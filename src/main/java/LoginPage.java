@@ -14,7 +14,7 @@ import java.sql.Statement;
  */
 public class LoginPage extends javax.swing.JFrame {
 
-    DB_Connection DB = new DB_Connection();
+    DB_Connection db = new DB_Connection();
     /**
      * Creates new form LoginPage
      */
@@ -60,6 +60,11 @@ public class LoginPage extends javax.swing.JFrame {
         });
 
         registerBtn.setText("Register");
+        registerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("ID");
 
@@ -125,14 +130,14 @@ public class LoginPage extends javax.swing.JFrame {
         
 
         try {
-            DB.connectDB();
+            db.connectDB();
             String query = String.format("SELECT * FROM User WHERE ID='%s' AND Password='%s'",id,password);
-            Statement st = DB.conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            db.st = db.conn.createStatement();
+            ResultSet rs = db.st.executeQuery(query);
             if (rs.next()) {
                 this.dispose();
                 JOptionPane.showMessageDialog(this,"You are logging in");
-                DB.disconnect();
+                db.disconnect();
 
             }else{
                 JOptionPane.showMessageDialog(this,"Error");
@@ -147,6 +152,13 @@ public class LoginPage extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
+        // TODO add your handling code here:
+        RegisterForm rf = new RegisterForm(this,false);
+        rf.setVisible(true);
+        
+    }//GEN-LAST:event_registerBtnActionPerformed
 
     /**
      * @param args the command line arguments
