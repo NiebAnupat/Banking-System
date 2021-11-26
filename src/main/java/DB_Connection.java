@@ -1,16 +1,21 @@
 import java.sql.*;
+import javax.swing.JOptionPane;
 public class DB_Connection {
 
-    private Connection conn = null;
-    private Statement st = null;
-    private String url = "jdbc:sqlite:Banking System.db";
+    protected Connection conn = null;
+    protected Statement st = null;
+    protected PreparedStatement ps = null;
+    protected ResultSet rs = null;
+    private String url = "jdbc:sqlite:C:\\Users\\niebz\\Desktop\\Project\\Banking-System\\DB\\Banking System.db";
 
     public void connectDB() throws SQLException {
 
         try {
             conn = DriverManager.getConnection(url);
         }catch (SQLException ex){
-            System.out.println("Cannot connected database");
+
+            JOptionPane.showMessageDialog(null, "Error connecting to database");
+
         }
 
     }
@@ -20,37 +25,34 @@ public class DB_Connection {
         try {
             conn.close();
         }catch (SQLException ex){
-            System.out.println("Cannot closed database");
+            JOptionPane.showMessageDialog(null,"Error disconnecting");
         }
 
     }
 
     public ResultSet getResultSet (String query) throws SQLException {
 
-        ResultSet rs;
-        connectDB();
-
         try{
-
+            connectDB();
             st = conn.createStatement();
             rs = st.executeQuery(query);
-            disconnect();
 
         }catch (Exception ex){
             rs = null;
+        }finally {
+            disconnect();
         }
 
         return rs;
 
     }
 
-    public boolean executeQuery (String query) throws SQLException {
+    public boolean execute (String query) throws SQLException {
 
         boolean rs;
-        connectDB();
 
         try{
-
+            connectDB();
             st = conn.createStatement();
             st.execute(query);
             rs = true;
@@ -59,6 +61,8 @@ public class DB_Connection {
 
             rs = false;
 
+        }finally{
+            disconnect();
         }
 
         return rs;
