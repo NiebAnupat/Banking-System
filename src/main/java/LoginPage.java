@@ -205,7 +205,6 @@ public class LoginPage extends javax.swing.JFrame {
         String id = idTextField.getText();
         String password = passwordTextField.getText();
 
-
         try {
             db.connectDB();
             String query = String.format("SELECT * FROM User WHERE user_id='%s' AND user_password='%s'",id,password);
@@ -214,6 +213,8 @@ public class LoginPage extends javax.swing.JFrame {
             if (rs.next()) {
                 this.dispose();
                 JOptionPane.showMessageDialog(this,"You are logging in");
+                MenuPage mp = new MenuPage();
+                mp.setVisible(true);
                 db.disconnect();
 
             }else{
