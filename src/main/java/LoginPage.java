@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 public class LoginPage extends javax.swing.JFrame {
 
-    DB_Connection db = new DB_Connection();
+
 
     public LoginPage() {
         initComponents();
@@ -206,6 +206,7 @@ public class LoginPage extends javax.swing.JFrame {
         String password = passwordTextField.getText();
 
         try {
+            DB_Connection db = new DB_Connection();
             db.connectDB();
             String query = String.format("SELECT * FROM User WHERE user_id='%s' AND user_password='%s'",id,password);
             db.st = db.conn.createStatement();

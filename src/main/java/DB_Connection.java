@@ -13,15 +13,12 @@ public class DB_Connection {
         try {
             conn = DriverManager.getConnection(url);
         }catch (SQLException ex){
-
             JOptionPane.showMessageDialog(null, "Error connecting to database");
-
         }
 
     }
 
     public void disconnect() throws SQLException {
-
         try {
             conn.close();
         }catch (SQLException ex){
