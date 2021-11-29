@@ -1,6 +1,8 @@
 package Main;
 
 
+import AccountManagement.AccountManagementPage;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -18,10 +20,16 @@ import javax.swing.*;
  */
 public class LoginPage extends javax.swing.JFrame {
 
+
+
     /**
      * Creates new form LoginPage
      */
+
     public LoginPage() {
+
+
+
         initComponents();
         
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).
@@ -223,7 +231,7 @@ public class LoginPage extends javax.swing.JFrame {
             String query = String.format("SELECT * FROM User WHERE user_id='%s' AND user_password='%s'",id,password);
             ResultSet rs = db.getResultSet(query);
             if (rs.next()) {
-                this.dispose();
+                this.setVisible(false);
                 JOptionPane.showMessageDialog(this,"You are logging in");
                 MenuPage mn = new MenuPage();
                 mn.setVisible(true);              
@@ -237,6 +245,10 @@ public class LoginPage extends javax.swing.JFrame {
         }
     }
 
+    public static String currentid(){
+        return text_id.getText();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
@@ -246,7 +258,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JButton registerBtn;
-    private javax.swing.JTextField text_id;
+    private static javax.swing.JTextField text_id;
     private javax.swing.JPasswordField text_password;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,10 +4,10 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 public class DB_Connection {
 
-    protected Connection conn = null;
-    protected Statement st = null;
-    protected PreparedStatement ps = null;
-    protected ResultSet rs = null;
+    private Connection conn = null;
+    private Statement st = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
     private String url = "jdbc:sqlite:C:\\Users\\niebz\\Desktop\\Project\\Banking-System\\DB\\Banking System.db";
 
     public void connectDB() throws SQLException {
@@ -38,8 +38,6 @@ public class DB_Connection {
 
         }catch (Exception ex){
             rs = null;
-        }finally {
-            disconnect();
         }
 
         return rs;

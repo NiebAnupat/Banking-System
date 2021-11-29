@@ -11,7 +11,7 @@ package Banking;
  */
 public class BankingPage extends javax.swing.JFrame {
 
-    /**
+     /**
      * Creates new form BankingPage
      */
     public BankingPage() {
