@@ -63,6 +63,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
 
         close_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         close_ac_btn.setText("Close an account");
+        close_ac_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                close_ac_btnActionPerformed(evt);
+            }
+        });
 
         back_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         back_btn.setText("Back");
@@ -123,6 +128,12 @@ public class AccountManagementPage extends javax.swing.JFrame {
         open_ac open_ac = new open_ac(this,false);
         open_ac.setVisible(true);
     }//GEN-LAST:event_open_ac_btnActionPerformed
+
+    private void close_ac_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_ac_btnActionPerformed
+        // TODO add your handling code here:
+        close_ac closeAc = new close_ac(this,false);
+        closeAc.setVisible(true);
+    }//GEN-LAST:event_close_ac_btnActionPerformed
     /**
      * @param args the command line arguments
      */

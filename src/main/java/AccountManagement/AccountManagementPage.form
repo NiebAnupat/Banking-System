@@ -93,6 +93,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Close an account"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="close_ac_btnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="back_btn">
       <Properties>
