@@ -189,6 +189,7 @@ public class open_ac_submit extends javax.swing.JDialog {
 
         if(temp){
             JOptionPane.showMessageDialog(this, "Success");
+            this.dispose();
         }else JOptionPane.showMessageDialog(this, "Fail");
         //
 

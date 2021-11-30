@@ -139,19 +139,21 @@ public class close_ac extends javax.swing.JDialog {
 
         try {
             ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
-            JOptionPane.showMessageDialog(this, ac_number);
-            query = String.format("DELETE FROM account WHERE ac_number='%s';",ac_number);
-            DB_Connection db = new DB_Connection();
-            temp = db.execute(query);
+            int select = JOptionPane.showInternalConfirmDialog(null,"You want to close account number : "+ac_number+" ?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if( select == JOptionPane.YES_OPTION){
+                query = String.format("DELETE FROM account WHERE ac_number='%s';",ac_number);
+                DB_Connection db = new DB_Connection();
+                temp = db.execute(query);
+            }else throw new Exception();
+
         }catch (Exception e) {
             temp = false;
-            JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
         if(temp){
             JOptionPane.showMessageDialog(this, "Success");
             setTable();
-        }else JOptionPane.showMessageDialog(this, "Fail");
+        }
 
     }//GEN-LAST:event_close_ac_btnActionPerformed
 
