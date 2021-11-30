@@ -8,12 +8,14 @@ public class DB_Connection {
     private Statement st = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    private String url = "jdbc:sqlite:C:\\Users\\niebz\\Desktop\\Project\\Banking-System\\DB\\Banking System.db";
+    private String url = "jdbc:mysql://localhost:3306/banking system";
+    private String username = "root";
+    private String password = "";
 
     public void connectDB() throws SQLException {
 
         try {
-            conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url,username,password);
         }catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Error connecting to database");
         }
@@ -23,6 +25,7 @@ public class DB_Connection {
     public void disconnect() throws SQLException {
         try {
             conn.close();
+
         }catch (SQLException ex){
             JOptionPane.showMessageDialog(null,"Error disconnecting");
         }
@@ -55,13 +58,11 @@ public class DB_Connection {
             rs = true;
 
         }catch (Exception ex){
-
+            JOptionPane.showMessageDialog(null,"Error : "+ex);
             rs = false;
 
-        }finally{
-            disconnect();
         }
-
+        disconnect();
         return rs;
 
     }

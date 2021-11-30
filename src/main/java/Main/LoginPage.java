@@ -228,7 +228,7 @@ public class LoginPage extends javax.swing.JFrame {
         String password = String.valueOf(temp);
         try {
             DB_Connection db = new DB_Connection();
-            String query = String.format("SELECT * FROM User WHERE user_id='%s' AND user_password='%s'",id,password);
+            String query = String.format("SELECT * FROM customers WHERE customer_id='%s' AND customer_password='%s'",id,password);
             ResultSet rs = db.getResultSet(query);
             if (rs.next()) {
                 this.setVisible(false);

@@ -4,6 +4,7 @@ import Main.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.util.Random;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,7 +17,6 @@ import java.sql.ResultSet;
  */
 public class AccountManagementPage extends javax.swing.JFrame {
 
-    String current_id = null;
     /**
      * Creates new form ManageAccountPage
      */
@@ -33,112 +33,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        view_ac = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        view_ac_pane = new javax.swing.JScrollPane();
-        view_ac_table = new javax.swing.JTable();
-        refresh_view_ac_btn = new javax.swing.JButton();
-        back_view_ac_btn = new javax.swing.JButton();
-        open_ac = new javax.swing.JDialog();
-        jLabel3 = new javax.swing.JLabel();
         view_ac_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         open_ac_btn = new javax.swing.JButton();
         close_ac_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
-
-        view_ac.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        view_ac.setMinimumSize(new java.awt.Dimension(550, 420));
-        view_ac.setModal(true);
-        view_ac.setResizable(false);
-        view_ac.setType(java.awt.Window.Type.POPUP);
-        view_ac.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                view_acWindowActivated(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("View your account");
-
-        view_ac_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        view_ac_pane.setViewportView(view_ac_table);
-
-        refresh_view_ac_btn.setText("Refresh");
-        refresh_view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refresh_view_ac_btnActionPerformed(evt);
-            }
-        });
-
-        back_view_ac_btn.setText("Back");
-        back_view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back_view_ac_btnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout view_acLayout = new javax.swing.GroupLayout(view_ac.getContentPane());
-        view_ac.getContentPane().setLayout(view_acLayout);
-        view_acLayout.setHorizontalGroup(
-            view_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(view_acLayout.createSequentialGroup()
-                .addGroup(view_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(view_acLayout.createSequentialGroup()
-                        .addComponent(refresh_view_ac_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(back_view_ac_btn))
-                    .addGroup(view_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(view_acLayout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(view_acLayout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(view_ac_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20))
-        );
-        view_acLayout.setVerticalGroup(
-            view_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(view_acLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(view_ac_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(view_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refresh_view_ac_btn)
-                    .addComponent(back_view_ac_btn))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Open an account");
-
-        javax.swing.GroupLayout open_acLayout = new javax.swing.GroupLayout(open_ac.getContentPane());
-        open_ac.getContentPane().setLayout(open_acLayout);
-        open_acLayout.setHorizontalGroup(
-            open_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, open_acLayout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
-        );
-        open_acLayout.setVerticalGroup(
-            open_acLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(open_acLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(368, Short.MAX_VALUE))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,6 +55,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
 
         open_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         open_ac_btn.setText("Open an account");
+        open_ac_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                open_ac_btnActionPerformed(evt);
+            }
+        });
 
         close_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         close_ac_btn.setText("Close an account");
@@ -203,11 +107,8 @@ public class AccountManagementPage extends javax.swing.JFrame {
 
     private void view_ac_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_ac_btnActionPerformed
         // TODO add your handling code here:
-
-        setTable();
+        view_ac view_ac = new view_ac(this,false);
         view_ac.setVisible(true);
-
-        
     }//GEN-LAST:event_view_ac_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
@@ -217,21 +118,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
         menu_page.setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
 
-    private void refresh_view_ac_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_view_ac_btnActionPerformed
+    private void open_ac_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_open_ac_btnActionPerformed
         // TODO add your handling code here:
-        setTable();
-    }//GEN-LAST:event_refresh_view_ac_btnActionPerformed
-
-    private void view_acWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_view_acWindowActivated
-        // TODO add your handling code here:
-               setTable();
-    }//GEN-LAST:event_view_acWindowActivated
-
-    private void back_view_ac_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_view_ac_btnActionPerformed
-        // TODO add your handling code here:
-        view_ac.dispose();
-    }//GEN-LAST:event_back_view_ac_btnActionPerformed
-
+        open_ac open_ac = new open_ac(this,false);
+        open_ac.setVisible(true);
+    }//GEN-LAST:event_open_ac_btnActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -268,56 +159,13 @@ public class AccountManagementPage extends javax.swing.JFrame {
         });
     }
 
-    private void setTable() {
 
-        String current_id = LoginPage.currentid();
-        String query = String.format("SELECT * FROM Account WHERE user_id='%s';",current_id);
-        String[] fieldName = {"#","user_id","ac_number","bank_id","ac_name","ac_balance"};
-        DefaultTableModel model = new DefaultTableModel(fieldName,0);
-
-        try {
-            DB_Connection db = new DB_Connection();
-            ResultSet rs = db.getResultSet(query);
-
-            int i=0;
-            while (rs.next()) {
-
-                i++;
-                String rownumber = String.valueOf(i);
-                String user_id = rs.getString("user_id");
-                String ac_number = rs.getString("ac_number");
-                String bank_id = rs.getString("bank_id");
-                String ac_name = rs.getString("ac_name");
-                String ac_balance = (rs.getString("ac_balance")+" ฿");
-                String[] row = {rownumber,user_id,ac_number, bank_id, ac_name, ac_balance};
-
-                model.addRow(row);
-
-            }
-
-            db.disconnect();
-
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
-        }
-
-        view_ac_table.setModel(model);
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
-    private javax.swing.JButton back_view_ac_btn;
     private javax.swing.JButton close_ac_btn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JDialog open_ac;
     private javax.swing.JButton open_ac_btn;
-    private javax.swing.JButton refresh_view_ac_btn;
-    private javax.swing.JDialog view_ac;
     private javax.swing.JButton view_ac_btn;
-    private javax.swing.JScrollPane view_ac_pane;
-    private javax.swing.JTable view_ac_table;
     // End of variables declaration//GEN-END:variables
 }

@@ -256,7 +256,7 @@ public class RegisterForm extends javax.swing.JDialog {
 
         try {
             DB_Connection db = new DB_Connection();
-            query = String.format("INSERT INTO User(user_id,user_password,user_Name,user_tel) VALUES('%s','%s','%s','%s');",id,password,name,tel);
+            query = String.format("INSERT INTO customers(customer_id,customer_password,customer_Name,customer_tel) VALUES('%s','%s','%s','%s');",id,password,name,tel);
             rs = db.execute(query);
         }catch (Exception e) {
             rs = false;
