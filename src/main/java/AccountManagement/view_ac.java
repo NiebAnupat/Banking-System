@@ -166,7 +166,12 @@ public class view_ac extends javax.swing.JDialog {
     private void setTable() {
 
         String current_id = LoginPage.currentid();
-        String query = String.format("SELECT ac_number, Bank.bank_name, ac_name, ac_balance FROM Account INNER JOIN Bank ON Account.bank_id = Bank.bank_id WHERE customer_id='%s';",current_id);
+        String query = String.format
+                ("SELECT ac_number, Bank.bank_name, ac_name, ac_balance " +
+                "FROM Account " +
+                "INNER JOIN Bank ON Account.bank_id = Bank.bank_id " +
+                "WHERE customer_id='%s';",current_id);
+
         String[] fieldName = {"#","Number","Bank","Name","Balance"};
         DefaultTableModel model = new DefaultTableModel(fieldName,0);
 

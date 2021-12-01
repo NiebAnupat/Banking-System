@@ -148,6 +148,7 @@ public class open_ac extends javax.swing.JDialog {
         String query;
         DB_Connection db = new DB_Connection();
         ResultSet rs = null;
+
         try {
             query = String.format("SELECT bank_name FROM Bank");
             rs = db.getResultSet(query);

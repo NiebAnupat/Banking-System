@@ -204,22 +204,17 @@ public class open_ac_submit extends javax.swing.JDialog {
         ResultSet rs = null;
         DB_Connection db = new DB_Connection();
         Random rd = new Random();
-        boolean temp;
+
+
         try {
-            do {
+            while (true) {
                 ac_number = String.valueOf(rd.nextInt(100000));
-                query = String.format("SELECT ac_number FROM account WHERE customer_id='%s'",current_id);
+                query = String.format("SELECT ac_number FROM account WHERE customer_id='%s' , ac_number = '%s'", current_id, ac_number);
                 rs = db.getResultSet(query);
                 rs.next();
-                if(rs.getString(1).equals(ac_number) ){
-                    temp = true;
-                }else temp = false;
-                rs.close();
                 db.disconnect();
-            }while (temp);
-
+            }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
         try{

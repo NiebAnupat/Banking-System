@@ -114,7 +114,7 @@ public class close_ac extends javax.swing.JDialog {
                     .addComponent(refresh_view_ac_btn)
                     .addComponent(back_view_ac_btn)
                     .addComponent(close_ac_btn))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
