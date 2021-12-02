@@ -168,23 +168,23 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        Login();
+        Login(); // เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-        // TODO add your handling code here:
-        RegisterForm rf = new RegisterForm(this,false);
-        rf.setVisible(true);
+
+        RegisterForm rf = new RegisterForm(this,false); // สร้าง Object จากคลาส RegisterForm
+        rf.setVisible(true); // เรียกใช้ Object ที่สร้างเพื่อให้แสดงขึ้นมา
         
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // TODO add your handling code here:
+        System.exit(0); // สั่งออกจากโปรแกรมเมื่อกดปุ่ม Exit
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void text_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text_passwordKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) Login();
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) Login(); // เมื่อ Cursor ชี้อยู่ที่ password_TextField สามารถกดปุ่ม Enter เพื่อ Login ได้
     }//GEN-LAST:event_text_passwordKeyPressed
 
     /**
@@ -222,32 +222,44 @@ public class LoginPage extends javax.swing.JFrame {
         });
     }
 
+    // ------------------------------------Method ที่ใช้ในการ Login เข้าสู่หน้า Menu-----------------------------------
     private void Login(){
-        String id = text_id.getText();
-        char[] temp = text_password.getPassword();
-        String password = String.valueOf(temp);
+        String id = text_id.getText(); // เก็บข้อมูล String ที่ได้จาก TextField
+        char[] temp = text_password.getPassword(); // เก็บข้อมูลรหัสผ่านที่ได้จาก PasswordField
+        String password = String.valueOf(temp); // แปลงรหัสผ่านเป็นข้อมูลประเภท String เพื่อง่ายต่อการทำงาน
+
+        // ---------------↓ ↓ ↓ ↓-----เมื่อทำงานกับ Database ต้องใช้ try catch เพื่อป้องกันข้อผิดพลาด------↓ ↓ ↓ ↓---------------------
         try {
-            DB_Connection db = new DB_Connection();
+            DB_Connection db = new DB_Connection(); // สร้าง Object เพื่อเรียกใช้คำสั่งที่ทำงานร่วมกับ Database
+
+            //  ↓ ↓ ↓ ↓คำสั่ง Sql เพื่อเช็กว่ามีข้อมูล ID และ Password ที่รับเข้ามาใน Database หรือไม่ ↓ ↓ ↓ ↓
             String query = String.format("SELECT * FROM customers WHERE customer_id='%s' AND customer_password='%s'",id,password);
-            ResultSet rs = db.getResultSet(query);
-            if (rs.next()) {
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(this,"You are logging in");
-                MenuPage mn = new MenuPage();
-                mn.setVisible(true);              
+            //  ↑ ↑ ↑ ↑คำสั่ง Sql เพื่อเช็กว่ามีข้อมูล ID และ Password ที่รับเข้ามาใน Database หรือไม่ ↑ ↑ ↑ ↑
+
+            ResultSet rs = db.getResultSet(query); // สั่ง execute query และเก็บผลลัพที่ได้จากการ excecute ไว้ใน ResultSet
+            if (rs.next()) { // เช็กว่าใน ResultSet มีข้อมูลหรือไม่ ถ้ามีจะ return ค่าออกมาเป็น ture
+                // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อ Username และ Password ถูกต้อง (มีอยู่ใน Database) เท่านั้น
+                this.setVisible(false); // สั่งซ่อนหน้า Login ที่ไม่สั่ง Dispose เพราะมีการเรียกใช้ข้อมูลจากหน้า Login ภายตัวโปรแกรม
+                JOptionPane.showMessageDialog(this,"You are logging in"); // แสดงกล่องข้อความว่า Login สำเร็จ
+                MenuPage mn = new MenuPage(); // สร้าง Object จากหน้า Menu
+                mn.setVisible(true); // สั่งแสดงหน้า Menu
             }else{
-                JOptionPane.showMessageDialog(this,"Error");
+                // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อ Username และ Password ไม่ถูกต้อง (ไม่มีอยู่ใน Database) เท่านั้น
+                JOptionPane.showMessageDialog(this,"Username or password is wrong.","Alert", JOptionPane.ERROR_MESSAGE);
             }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {// สั่งเก็บข้อผิดความที่ก็ขึ้นไว้ใน e
+            // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อเกิดข้อผิดพลาดจากคำสั่งภายใน try เท่านั้น
+            JOptionPane.showMessageDialog(this,"Error : "+e); // สั่งให้แสดงกล่องข้อความเพื่อแสดงข้อผิดพลาดที่เกินดึ้น
         }
+        // ------------↑ ↑ ↑ ↑------เมื่อทำงานกับ Database ต้องใช้ try catch เพื่อป้องกันข้อผิดพลาด------↑ ↑ ↑ ↑--------------------
     }
+    // -------------------------------------------------------------------------------------------------------
 
+    // -----Method ที่จะ retrun Username ที่ใช้โปรแกรมอยู่ในขณะนั้น-----
     public static String currentid(){
         return text_id.getText();
     }
+    // -------------------------------------------------------
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;

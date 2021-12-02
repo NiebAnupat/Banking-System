@@ -190,8 +190,6 @@ public class transfer extends javax.swing.JDialog {
         String bank_id_recipiebt;
         String query;
 
-//        JOptionPane.showMessageDialog(this, "transferor : "+ac_number_treansferor);
-//        JOptionPane.showMessageDialog(this, "Recipiebt : "+ac_number_recipiebt);
         try{
             DB_Connection db = new DB_Connection();
             query = String.format("SELECT bank_id FROM bank WHERE bank_name = '%s';",bank_name_recipiebt);
@@ -210,7 +208,6 @@ public class transfer extends javax.swing.JDialog {
             rs = db.getResultSet(query);
             if (rs.next()){
                 update_balance_transferor = Double.parseDouble(rs.getString(1)) - money_input;
-                //JOptionPane.showMessageDialog(this, "update_balance_transferor : "+update_balance_transferor);
             }
             else throw new Exception("Wrong account number");
 
@@ -220,7 +217,6 @@ public class transfer extends javax.swing.JDialog {
             rs = db.getResultSet(query);
             if (rs.next()){
                 update_balance_recipiebt = money_input + Double.parseDouble(rs.getString(1));
-                //JOptionPane.showMessageDialog(this, "update_balance_recipiebt : "+update_balance_recipiebt);
                 }
             else throw new Exception("Wrong account number");
 
