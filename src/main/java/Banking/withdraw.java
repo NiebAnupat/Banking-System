@@ -10,6 +10,7 @@ import Main.LoginPage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -19,6 +20,8 @@ public class withdraw extends javax.swing.JDialog {
 
     /**
      * Creates new form Withdraw
+     * @param parent
+     * @param modal
      */
     public withdraw(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -147,7 +150,7 @@ public class withdraw extends javax.swing.JDialog {
             ResultSet rs = db.getResultSet(query);
             rs.next();
             ac_balance_st = rs.getString(1);
-        }catch (Exception e) {
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
@@ -159,7 +162,7 @@ public class withdraw extends javax.swing.JDialog {
             query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
             DB_Connection db = new DB_Connection();
             temp = db.execute(query);
-        }catch (Exception e) {
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }
@@ -170,10 +173,8 @@ public class withdraw extends javax.swing.JDialog {
     }//GEN-LAST:event_withdraw_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
-        // TODO add your handling code here:
-        BankingPage banking_page = new BankingPage();
-        this.dispose();
-        banking_page.setVisible(true);
+        // TODO add your handling code here:        
+        this.dispose();        
     }//GEN-LAST:event_back_btnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

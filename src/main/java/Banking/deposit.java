@@ -172,9 +172,7 @@ public class deposit extends javax.swing.JDialog {
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         // TODO add your handling code here:
-        BankingPage banking_page = new BankingPage();
         this.dispose();
-        banking_page.setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

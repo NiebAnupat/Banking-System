@@ -29,7 +29,7 @@ public class BankingPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
+        trans_btn = new javax.swing.JButton();
         withdraw_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         deposit_btn = new javax.swing.JButton();
@@ -38,8 +38,13 @@ public class BankingPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Transfer money");
+        trans_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        trans_btn.setText("Transfer money");
+        trans_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trans_btnActionPerformed(evt);
+            }
+        });
 
         withdraw_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         withdraw_btn.setText("Withdraw money");
@@ -84,7 +89,7 @@ public class BankingPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trans_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(deposit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(withdraw_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +105,7 @@ public class BankingPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(balance_view_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trans_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deposit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,6 +134,7 @@ public class BankingPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         withdraw wd = new withdraw(this,false);
         wd.setVisible(true);
+      
     }//GEN-LAST:event_withdraw_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
@@ -137,6 +143,12 @@ public class BankingPage extends javax.swing.JFrame {
         this.dispose();
         menu_page.setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
+
+    private void trans_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trans_btnActionPerformed
+        // TODO add your handling code here:
+        transfer tf = new transfer(this,false);
+        tf.setVisible(true);
+    }//GEN-LAST:event_trans_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,10 +178,8 @@ public class BankingPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BankingPage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new BankingPage().setVisible(true);
         });
     }
 
@@ -177,8 +187,8 @@ public class BankingPage extends javax.swing.JFrame {
     private javax.swing.JButton back_btn;
     private javax.swing.JButton balance_view_btn;
     private javax.swing.JButton deposit_btn;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton trans_btn;
     private javax.swing.JButton withdraw_btn;
     // End of variables declaration//GEN-END:variables
 }

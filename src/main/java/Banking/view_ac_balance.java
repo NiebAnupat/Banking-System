@@ -146,7 +146,6 @@ public class view_ac_balance extends javax.swing.JDialog {
     private void view_balannceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_balannceActionPerformed
         // TODO add your handling code here:
         String ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
-        JOptionPane.showMessageDialog(this, ac_number);
         String query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number);
 
         try {
@@ -162,9 +161,7 @@ public class view_ac_balance extends javax.swing.JDialog {
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         // TODO add your handling code here:
-       BankingPage banking_page = new BankingPage();
        this.dispose();
-       banking_page.setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
 
     /**
