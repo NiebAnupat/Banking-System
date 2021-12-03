@@ -5,6 +5,8 @@ package Statement;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author niebz
@@ -36,6 +38,11 @@ public class view_statement extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         refresh_view_ac_btn.setText("Refresh");
         refresh_view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -115,12 +122,23 @@ public class view_statement extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_back_view_ac_btnActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+
+
+
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
 
     private void setTable(){
         String[] row = {"#","Statement ID","Date","Type","Amount","Reciever"};
+        DefaultTableModel modal = new DefaultTableModel(row,0);
+
+        String query = String.format("SELECT stm_id, stm_date, banking_type.type_name, banking_id FROM total_statement INNER JOIN banking_type");
+
     }
 
     public static void main(String args[]) {

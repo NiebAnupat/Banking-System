@@ -176,7 +176,7 @@ public class withdraw extends javax.swing.JDialog {
             ResultSet rs = db.getResultSet(query);
             rs.next();
             String wd_id = rs.getString(1);
-            query = String.format("INSERT INTO statement (stm_date,type_id,banking_id) VALUES ('%s','%d','%s')",dateSql,2,wd_id);
+            query = String.format("INSERT INTO total_statement (stm_date,type_id,banking_id,amount) VALUES ('%s','%d','%s','%f')",dateSql,2,wd_id,money_input);
             temp = db.execute(query);
 
         }catch (SQLException e) {
