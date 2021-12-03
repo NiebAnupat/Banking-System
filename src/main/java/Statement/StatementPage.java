@@ -20,6 +20,7 @@ public class StatementPage extends javax.swing.JFrame {
     /**
      * Creates new form SummeryPage
      */
+    static String ac_number = null;
     public StatementPage() {
         initComponents();
     }
@@ -34,7 +35,7 @@ public class StatementPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        deposit_btn = new javax.swing.JButton();
+        view_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -42,15 +43,20 @@ public class StatementPage extends javax.swing.JFrame {
         view_ac_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Statement");
 
-        deposit_btn.setText("Deposit");
-        deposit_btn.addActionListener(new java.awt.event.ActionListener() {
+        view_btn.setText("View");
+        view_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deposit_btnActionPerformed(evt);
+                view_btnActionPerformed(evt);
             }
         });
 
@@ -103,7 +109,7 @@ public class StatementPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(back_btn, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deposit_btn))
+                    .addComponent(view_btn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -119,7 +125,7 @@ public class StatementPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deposit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(view_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152)
                         .addComponent(back_btn))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,46 +135,24 @@ public class StatementPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deposit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deposit_btnActionPerformed
+    private void view_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_btnActionPerformed
         // TODO add your handling code here:
 
-        String ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
-        String ac_balance_st = null;
-        String query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number);
+        ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
+        view_statement view_st = new view_statement(this,false);
+        view_st.setVisible(true);
 
-        try {
-            DB_Connection db = new DB_Connection();
-            ResultSet rs = db.getResultSet(query);
-            rs.next();
-            ac_balance_st = rs.getString(1);
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
-        }
-
-        Double money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to deposit : "));
-        Double ac_balance = money_input + Double.parseDouble(ac_balance_st);
-        boolean temp;
-
-        try{
-            query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
-            DB_Connection db = new DB_Connection();
-            temp = db.execute(query);
-            query = String.format("INSERT INTO moneydeposit (dp_money,ac_number) VALUES ('%f','%s');",money_input,ac_number);
-            temp = db.execute(query);
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
-            temp = false;
-        }
-
-        if (temp)JOptionPane.showMessageDialog(this,"Successful deposit");
-        else JOptionPane.showMessageDialog(this,"Deposit failed");
-
-    }//GEN-LAST:event_deposit_btnActionPerformed
+    }//GEN-LAST:event_view_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_back_btnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        setTable();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -239,11 +223,11 @@ public class StatementPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
-    private javax.swing.JButton deposit_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable view_ac_table;
+    private javax.swing.JButton view_btn;
     // End of variables declaration//GEN-END:variables
 }

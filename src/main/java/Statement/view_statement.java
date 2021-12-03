@@ -5,7 +5,11 @@ package Statement;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 
+import Main.DB_Connection;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
 
 /**
  *
@@ -35,7 +39,7 @@ public class view_statement extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         view_stm_pane = new javax.swing.JScrollPane();
         view_stm_table = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        ac_number_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,8 +75,8 @@ public class view_statement extends javax.swing.JDialog {
         ));
         view_stm_pane.setViewportView(view_stm_table);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("###############");
+        ac_number_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ac_number_label.setText("###############");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +94,7 @@ public class view_statement extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ac_number_label, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,7 +103,7 @@ public class view_statement extends javax.swing.JDialog {
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(ac_number_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(view_stm_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,8 +128,8 @@ public class view_statement extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-
-
+        ac_number_label.setText(StatementPage.ac_number);
+        setTable();
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -134,10 +138,37 @@ public class view_statement extends javax.swing.JDialog {
      */
 
     private void setTable(){
-        String[] row = {"#","Statement ID","Date","Type","Amount","Reciever"};
+        String[] row = {"#","Statement ID","Date","Type","Amount"};
         DefaultTableModel modal = new DefaultTableModel(row,0);
 
-        String query = String.format("SELECT stm_id, stm_date, banking_type.type_name, banking_id FROM total_statement INNER JOIN banking_type");
+        String query = String.format("SELECT stm_id, stm_date, BT.type_name, amount FROM total_statement AS TS " +
+                "INNER JOIN banking_type AS BT ON TS.type_id = BT.type_id " +
+                "INNER JOIN account AS AC ON TS.ac_number = AC.ac_number " +
+                "WHERE TS.ac_number = '%s' " +
+                "ORDER BY stm_id;",StatementPage.ac_number);
+
+        int i = 0;
+        try{
+
+            DB_Connection db = new DB_Connection();
+            ResultSet rs = db.getResultSet(query);
+            while(rs.next()) {
+                i++;
+                String stm_id = rs.getString(1);
+                String stm_date = rs.getString(2);
+                String type = rs.getString(3);
+                String amount = rs.getString(4);
+                String[] rows = {String.valueOf(i),stm_id,stm_date,type,amount};
+
+                modal.addRow(rows);
+            }
+            db.disconnect();
+            view_stm_table.setModel(modal);
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error : "+e);
+        }
+
 
     }
 
@@ -181,9 +212,9 @@ public class view_statement extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ac_number_label;
     private javax.swing.JButton back_view_ac_btn;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton refresh_view_ac_btn;
     private javax.swing.JScrollPane view_stm_pane;
     private javax.swing.JTable view_stm_table;

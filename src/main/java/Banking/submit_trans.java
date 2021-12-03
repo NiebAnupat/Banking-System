@@ -222,7 +222,7 @@ public class submit_trans extends javax.swing.JDialog {
         SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(new Date());
         String dateSql = sdfSql.format(new Date());
-        boolean temp1,temp2,temp3;
+        boolean temp1,temp2,temp3,temp4;
         try{
             DB_Connection db = new DB_Connection();
             Double update_balance_transferor = transfer.update_balance_transferor;
@@ -247,17 +247,18 @@ public class submit_trans extends javax.swing.JDialog {
             ResultSet rs = db.getResultSet(query);
             rs.next();
             String tf_id = rs.getString(1);
-            query = String.format("INSERT INTO total_statement (stm_date,type_id,banking_id,amount) VALUES ('%s','%d','%s','%f')",dateSql,3,tf_id,transfer.money_input);
-            temp3 = db.execute(query);
+            query = String.format("INSERT INTO total_statement (stm_date,type_id,ac_number,banking_id,amount) VALUES ('%s','%d','%s','%s','%f');",dateSql,3,transfer.ac_number_treansferor,tf_id,transfer.money_input);
+            temp4 = db.execute(query);
 
         }catch(Exception e){
             temp1 = false;
             temp2 = false;
             temp3 = false;
+            temp4 = false;
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
-        if ((temp1) && (temp2)){
+        if ((temp1) && (temp2) && (temp3) && (temp4)){
             JOptionPane.showMessageDialog(this, "You have transferred amount : "+transfer.money_input+" ฿\nTransaction time : "+date);
             JOptionPane.showMessageDialog(this, "Transfer Succeed");
             this.dispose();
