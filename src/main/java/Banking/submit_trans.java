@@ -9,6 +9,8 @@ import Main.LoginPage;
 
 import javax.swing.*;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -23,7 +25,6 @@ public class submit_trans extends javax.swing.JDialog {
     String ac_number_treansferor ;
     String ac_number_recipiebt ;
     String bank_name_recipiebt ;
-    String money_input ;
     String bank_id_recipiebt;
 
     public submit_trans(java.awt.Frame parent, boolean modal) {
@@ -60,6 +61,10 @@ public class submit_trans extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(450, 480));
+        setPreferredSize(new java.awt.Dimension(450, 480));
+        setResizable(false);
+        setSize(new java.awt.Dimension(450, 480));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -121,67 +126,56 @@ public class submit_trans extends javax.swing.JDialog {
         amount_of_transfer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         amount_of_transfer.setText("######");
 
-        jLabel10.setText("___________________________________________________________");
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("__________________________________________________");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(185, 185, 185))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(name_reciever))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ac_number_transferor))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bank_name_transferor))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ac_number_reciever))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bank_name_reciever))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(name_transferor))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(name_reciever))))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bank_name_reciever))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ac_number_reciever))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(amount_of_transfer))
+                    .addComponent(jLabel10)
+                    .addComponent(trans_btn)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(trans_btn)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ac_number_transferor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bank_name_transferor))
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(name_transferor)))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(18, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ac_number_transferor))
@@ -193,7 +187,7 @@ public class submit_trans extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(name_transferor))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,15 +201,15 @@ public class submit_trans extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(name_reciever))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(amount_of_transfer))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
                 .addComponent(trans_btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -224,8 +218,11 @@ public class submit_trans extends javax.swing.JDialog {
     private void trans_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trans_btnActionPerformed
         // TODO add your handling code here:
         String query;
-
-        boolean temp1,temp2;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(new Date());
+        String dateSql = sdfSql.format(new Date());
+        boolean temp1,temp2,temp3;
         try{
             DB_Connection db = new DB_Connection();
             Double update_balance_transferor = transfer.update_balance_transferor;
@@ -241,13 +238,27 @@ public class submit_trans extends javax.swing.JDialog {
             db.execute(query);
             temp2 = true;
             db.disconnect();
+
+            query = String.format("INSERT INTO moneytransfer (tf_money,ac_number_treansferor,ac_number_recipiebt) VALUES ('%f','%s','%s');",transfer.money_input,transfer.ac_number_treansferor,transfer.ac_number_recipiebt);
+            temp3 = db.execute(query);
+            db.disconnect();
+
+            query = String.format("SELECT MAX(tf_id) FROM moneytransfer ;");
+            ResultSet rs = db.getResultSet(query);
+            rs.next();
+            String tf_id = rs.getString(1);
+            query = String.format("INSERT INTO statement (stm_date,type_id,banking_id) VALUES ('%s','%d','%s')",dateSql,3,tf_id);
+            temp3 = db.execute(query);
+
         }catch(Exception e){
             temp1 = false;
             temp2 = false;
+            temp3 = false;
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
         if ((temp1) && (temp2)){
+            JOptionPane.showMessageDialog(this, "You have transferred amount : "+transfer.money_input+" ฿\nTransaction time : "+date);
             JOptionPane.showMessageDialog(this, "Transfer Succeed");
             this.dispose();
         }else {
@@ -310,7 +321,7 @@ public class submit_trans extends javax.swing.JDialog {
         ac_number_reciever.setText(transfer.ac_number_recipiebt);
         bank_name_reciever.setText(transfer.bank_name_recipiebt);
         name_reciever.setText(name_reciever_st);
-        amount_of_transfer.setText(transfer.money_input_st);
+        amount_of_transfer.setText(transfer.money_input_st+" ฿");
 
 
     }//GEN-LAST:event_formWindowOpened

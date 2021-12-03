@@ -10,6 +10,9 @@ import Main.LoginPage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -140,6 +143,9 @@ public class deposit extends javax.swing.JDialog {
 
         String ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
         String ac_balance_st = null;
+        //String date = null;
+
+
         String query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number);
 
         try {
@@ -155,16 +161,37 @@ public class deposit extends javax.swing.JDialog {
         Double ac_balance = money_input + Double.parseDouble(ac_balance_st);
         boolean temp;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(new Date());
+        String dateSql = sdfSql.format(new Date());
+
         try{
             query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
             DB_Connection db = new DB_Connection();
             temp = db.execute(query);
+
+            query = String.format("INSERT INTO moneydeposit (dp_money,ac_number) VALUES ('%f','%s');",money_input,ac_number);
+            temp = db.execute(query);
+
+            query = String.format("SELECT MAX(dp_id) FROM moneydeposit ;");
+            ResultSet rs = db.getResultSet(query);
+            rs.next();
+            String dp_id = rs.getString(1);
+            query = String.format("INSERT INTO statement (stm_date,type_id,banking_id) VALUES ('%s','%d','%s')",dateSql,1,dp_id);
+            temp = db.execute(query);
+
         }catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }
 
-        if (temp)JOptionPane.showMessageDialog(this,"Successful deposit");
+
+
+        if (temp){
+            JOptionPane.showMessageDialog(this, "You have deposited amount : "+money_input+" ฿\nTransaction time : "+date);
+            JOptionPane.showMessageDialog(this,"Successful deposit");
+        }
         else JOptionPane.showMessageDialog(this,"Deposit failed");
 
         

@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Banking;
+package Statement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
@@ -10,23 +10,17 @@ import Main.LoginPage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
  * @author niebz
  */
-public class withdraw extends javax.swing.JDialog {
+public class StatementPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form Withdraw
-     * @param parent
-     * @param modal
+     * Creates new form SummeryPage
      */
-    public withdraw(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public StatementPage() {
         initComponents();
     }
 
@@ -39,20 +33,36 @@ public class withdraw extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        deposit_btn = new javax.swing.JButton();
+        back_btn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         view_ac_table = new javax.swing.JTable();
-        withdraw_btn = new javax.swing.JButton();
-        back_btn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Statement");
+
+        deposit_btn.setText("Deposit");
+        deposit_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deposit_btnActionPerformed(evt);
             }
         });
+
+        back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Select your account : ");
 
         view_ac_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,53 +94,32 @@ public class withdraw extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        withdraw_btn.setText("Withdraw");
-        withdraw_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                withdraw_btnActionPerformed(evt);
-            }
-        });
-
-        back_btn.setText("Back");
-        back_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back_btnActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Withdraw");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Select your account : ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(back_btn, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(withdraw_btn))
+                    .addComponent(deposit_btn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(withdraw_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deposit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152)
                         .addComponent(back_btn))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,7 +129,7 @@ public class withdraw extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void withdraw_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdraw_btnActionPerformed
+    private void deposit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deposit_btnActionPerformed
         // TODO add your handling code here:
 
         String ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
@@ -152,55 +141,34 @@ public class withdraw extends javax.swing.JDialog {
             ResultSet rs = db.getResultSet(query);
             rs.next();
             ac_balance_st = rs.getString(1);
-        }catch (SQLException e) {
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 
-        Double money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to withdraw : "));
-        Double ac_balance = Double.parseDouble(ac_balance_st) - money_input;
+        Double money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to deposit : "));
+        Double ac_balance = money_input + Double.parseDouble(ac_balance_st);
         boolean temp;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(new Date());
-        String dateSql = sdfSql.format(new Date());
 
         try{
             query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
             DB_Connection db = new DB_Connection();
             temp = db.execute(query);
-            query = String.format("INSERT INTO moneywithdraw (wd_money,ac_number) VALUES ('%f','%s');",money_input,ac_number);
+            query = String.format("INSERT INTO moneydeposit (dp_money,ac_number) VALUES ('%f','%s');",money_input,ac_number);
             temp = db.execute(query);
-
-            query = String.format("SELECT MAX(wd_id) FROM moneywithdraw ;");
-            ResultSet rs = db.getResultSet(query);
-            rs.next();
-            String wd_id = rs.getString(1);
-            query = String.format("INSERT INTO statement (stm_date,type_id,banking_id) VALUES ('%s','%d','%s')",dateSql,2,wd_id);
-            temp = db.execute(query);
-
-        }catch (SQLException e) {
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }
 
-        if (temp){
-            JOptionPane.showMessageDialog(this, "You have withdrew amount : "+money_input+" ฿\nTransaction time : "+date);
-            JOptionPane.showMessageDialog(this,"Successful withdraw");
-        }
-        else JOptionPane.showMessageDialog(this,"withdraw failed");
+        if (temp)JOptionPane.showMessageDialog(this,"Successful deposit");
+        else JOptionPane.showMessageDialog(this,"Deposit failed");
 
-    }//GEN-LAST:event_withdraw_btnActionPerformed
+    }//GEN-LAST:event_deposit_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
-        // TODO add your handling code here:        
-        this.dispose();        
-    }//GEN-LAST:event_back_btnActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        setTable();
-    }//GEN-LAST:event_formWindowOpened
+        this.dispose();
+    }//GEN-LAST:event_back_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,7 +204,6 @@ public class withdraw extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
     }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -251,38 +218,32 @@ public class withdraw extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatementPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatementPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatementPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatementPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                withdraw dialog = new withdraw(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new StatementPage().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
+    private javax.swing.JButton deposit_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable view_ac_table;
-    private javax.swing.JButton withdraw_btn;
     // End of variables declaration//GEN-END:variables
 }

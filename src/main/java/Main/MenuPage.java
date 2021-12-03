@@ -7,7 +7,7 @@ package Main;
 
 import AccountManagement.AccountManagementPage;
 import Banking.BankingPage;
-import Summary.SummeryPage;
+import Statement.StatementPage;
 
 /**
  *
@@ -156,7 +156,7 @@ public class MenuPage extends javax.swing.JFrame {
 
     private void summery_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summery_btnActionPerformed
         // TODO add your handling code here:
-        SummeryPage summery_page = new SummeryPage();
+        StatementPage summery_page = new StatementPage();
         this.dispose();
         summery_page.setVisible(true);
     }//GEN-LAST:event_summery_btnActionPerformed
