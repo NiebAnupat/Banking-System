@@ -185,24 +185,25 @@ public class transfer extends javax.swing.JDialog {
         ac_number_treansferor = ac_combobox.getSelectedItem().toString();
         ac_number_recipiebt = input_receiver_ac.getText();
         bank_name_recipiebt = bank_combobox.getSelectedItem().toString();
-        money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to transfer : "));
-        money_input_st = String.valueOf(money_input);
-        String bank_id_recipiebt;
+
+
         String query;
 
         try{
             DB_Connection db = new DB_Connection();
-            query = String.format("SELECT bank_id FROM bank WHERE bank_name = '%s';",bank_name_recipiebt);
-            ResultSet rs = db.getResultSet(query);
-            if(rs.next()) bank_id_recipiebt = rs.getString(1);
-            else {
-                throw new Exception();
+            ResultSet rs = null;
+            try{
+                query = String.format("SELECT bank.bank_id FROM bank INNER JOIN account ON bank.bank_id = account.bank_id WHERE account.ac_number = '%s' AND bank.bank_name = '%s';",ac_number_recipiebt,bank_name_recipiebt);
+                rs = db.getResultSet(query);
+                if (rs.next()){}
+                else throw new Exception();
+            }
+            catch(Exception e){
+                throw new Exception("Wrong account number or bank");
             }
 
-            query = String.format("SELECT ac_number FROM account WHERE bank_id = '%s' AND ac_number = '%s';",bank_id_recipiebt,ac_number_recipiebt);
-            if (db.execute(query)){}
-            else throw new Exception("Wrong account number or bank");
-            db.disconnect();
+            money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to transfer : "));
+            money_input_st = String.valueOf(money_input);
 
             query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number_treansferor);
             rs = db.getResultSet(query);
@@ -222,13 +223,14 @@ public class transfer extends javax.swing.JDialog {
 
             db.disconnect();
 
+            submit_trans submit_trans = new submit_trans(null,false);
+            submit_trans.setVisible(true);
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            JOptionPane.showMessageDialog(this, "Error : "+e.getMessage());
         }
 
-        submit_trans submit_trans = new submit_trans(null,false);
-        submit_trans.setVisible(true);
+
     }//GEN-LAST:event_next_btnActionPerformed
 
     /**
