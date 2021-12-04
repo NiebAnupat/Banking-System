@@ -222,9 +222,22 @@ public class submit_trans extends javax.swing.JDialog {
         SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(new Date());
         String dateSql = sdfSql.format(new Date());
-        boolean temp1,temp2,temp3,temp4;
+        boolean temp1,temp2,temp3,temp4,temp5;
         try{
+
+            query = String.format("SELECT bank_id FROM account WHERE ac_number = '%s'",transfer.ac_number_treansferor);
             DB_Connection db = new DB_Connection();
+            ResultSet  rs = db.getResultSet(query);
+            rs.next();
+            String bank_id = rs.getString(1);
+
+            query = String.format("SELECT bank_balance FROM bank WHERE bank_id = '%s';",bank_id);
+            rs = db.getResultSet(query);
+            rs.next();
+            Double bank_balance = rs.getDouble(1);
+
+            if (transfer.money_input > bank_balance) throw new Exception("Your bank not enough money");
+
             Double update_balance_transferor = transfer.update_balance_transferor;
             //JOptionPane.showMessageDialog(this, "ac balance transferor is : "+update_balance_transferor+"\nac_number_treansferor : "+transfer.ac_number_treansferor);
             query = String.format("UPDATE account SET ac_balance = '%s' WHERE ac_number = '%s'",update_balance_transferor,transfer.ac_number_treansferor);
@@ -244,17 +257,21 @@ public class submit_trans extends javax.swing.JDialog {
             db.disconnect();
 
             query = String.format("SELECT MAX(tf_id) FROM moneytransfer ;");
-            ResultSet rs = db.getResultSet(query);
+            rs = db.getResultSet(query);
             rs.next();
             String tf_id = rs.getString(1);
             query = String.format("INSERT INTO total_statement (stm_date,type_id,ac_number,banking_id,amount) VALUES ('%s','%d','%s','%s','%f');",dateSql,3,transfer.ac_number_treansferor,tf_id,transfer.money_input);
             temp4 = db.execute(query);
+
+            query = String.format("UPDATE bank SET bank_balance = (SELECT  sum(ac_balance) FROM account WHERE bank_id = '%s') WHERE bank_id ='%s';",bank_id,bank_id);
+            temp5 = db.execute(query);
 
         }catch(Exception e){
             temp1 = false;
             temp2 = false;
             temp3 = false;
             temp4 = false;
+            temp5 = false;
             JOptionPane.showMessageDialog(this, "Error : "+e);
         }
 

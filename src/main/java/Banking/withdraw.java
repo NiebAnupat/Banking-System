@@ -166,20 +166,36 @@ public class withdraw extends javax.swing.JDialog {
         String dateSql = sdfSql.format(new Date());
 
         try{
-            query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
+
+            query = String.format("SELECT bank_id FROM account WHERE ac_number = '%s'",ac_number);
             DB_Connection db = new DB_Connection();
+            ResultSet  rs = db.getResultSet(query);
+            rs.next();
+            String bank_id = rs.getString(1);
+
+            query = String.format("SELECT bank_balance FROM bank WHERE bank_id = '%s';",bank_id);
+            rs = db.getResultSet(query);
+            rs.next();
+            Double bank_balance = rs.getDouble(1);
+
+            if (money_input > bank_balance) throw new Exception("Your bank not enough money");
+
+            query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s' ;",ac_balance,ac_number);
             temp = db.execute(query);
             query = String.format("INSERT INTO moneywithdraw (wd_money,ac_number) VALUES ('%f','%s');",money_input,ac_number);
             temp = db.execute(query);
 
             query = String.format("SELECT MAX(wd_id) FROM moneywithdraw ;");
-            ResultSet rs = db.getResultSet(query);
+            rs = db.getResultSet(query);
             rs.next();
             String wd_id = rs.getString(1);
             query = String.format("INSERT INTO total_statement (stm_date,type_id,ac_number,banking_id,amount) VALUES ('%s','%d','%s','%s','%f')",dateSql,2,ac_number,wd_id,money_input);
             temp = db.execute(query);
 
-        }catch (SQLException e) {
+            query = String.format("UPDATE bank SET bank_balance = (SELECT  sum(ac_balance) FROM account WHERE bank_id = '%s') WHERE bank_id ='%s';",bank_id,bank_id);
+            temp = db.execute(query);
+
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }

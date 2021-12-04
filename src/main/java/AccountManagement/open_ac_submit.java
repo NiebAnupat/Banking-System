@@ -182,6 +182,14 @@ public class open_ac_submit extends javax.swing.JDialog {
             query = String.format("INSERT INTO account VALUES('%s','%s','%s','%s','%s');",current_id,ac_number,bank_id,customer_name,ac_balance);
             temp = db.execute(query);
 
+            query = String.format("SELECT bank_id FROM account WHERE ac_number = '%s'",ac_number);
+            rs = db.getResultSet(query);
+            rs.next();
+            String bank_id = rs.getString(1);
+
+            query = String.format("UPDATE bank SET bank_balance = (SELECT  sum(ac_balance) FROM account WHERE bank_id = '%s') WHERE bank_id ='%s';",bank_id,bank_id);
+            temp = db.execute(query);
+
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
