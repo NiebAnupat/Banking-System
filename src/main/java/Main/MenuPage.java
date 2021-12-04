@@ -82,7 +82,7 @@ public class MenuPage extends javax.swing.JFrame {
         });
 
         summery_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        summery_btn.setText("Summery");
+        summery_btn.setText("Statement");
         summery_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 summery_btnActionPerformed(evt);

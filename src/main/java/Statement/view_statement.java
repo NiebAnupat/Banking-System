@@ -20,6 +20,12 @@ public class view_statement extends javax.swing.JDialog {
     /**
      * Creates new form view_statement
      */
+
+    static String selectedStmId = null;
+    static String selectedStmDate = null;
+    static String selectedStmType = null;
+    static String selectedStmAmount = null;
+    static String ac_number_recipiebt = null;
     public view_statement(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -40,6 +46,7 @@ public class view_statement extends javax.swing.JDialog {
         view_stm_pane = new javax.swing.JScrollPane();
         view_stm_table = new javax.swing.JTable();
         ac_number_label = new javax.swing.JLabel();
+        view_detail_stm_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,6 +85,13 @@ public class view_statement extends javax.swing.JDialog {
         ac_number_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ac_number_label.setText("###############");
 
+        view_detail_stm_btn.setText("View detail");
+        view_detail_stm_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_detail_stm_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,8 +99,10 @@ public class view_statement extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
+                            .addComponent(view_detail_stm_btn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(refresh_view_ac_btn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(back_view_ac_btn))
@@ -109,7 +125,8 @@ public class view_statement extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refresh_view_ac_btn)
-                    .addComponent(back_view_ac_btn))
+                    .addComponent(back_view_ac_btn)
+                    .addComponent(view_detail_stm_btn))
                 .addContainerGap())
         );
 
@@ -132,6 +149,37 @@ public class view_statement extends javax.swing.JDialog {
         setTable();
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void view_detail_stm_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_detail_stm_btnActionPerformed
+        // TODO add your handling code here:
+
+        selectedStmId = view_stm_table.getValueAt(view_stm_table.getSelectedRow(),1).toString();
+        selectedStmDate = view_stm_table.getValueAt(view_stm_table.getSelectedRow(),2).toString();
+        selectedStmType = view_stm_table.getValueAt(view_stm_table.getSelectedRow(),3).toString();
+        selectedStmAmount = view_stm_table.getValueAt(view_stm_table.getSelectedRow(),4).toString();
+
+        try {
+            DB_Connection db = new DB_Connection();
+            String query = String.format("SELECT ac_number_recipiebt AS recipiebt FROM moneytransfer AS TF " +
+                    "INNER JOIN total_statement AS TS ON TF.tf_id = TS.banking_id " +
+                    "WHERE TS.stm_id = '%s';",selectedStmId);
+            ResultSet rs = db.getResultSet(query);
+            rs.next();
+            ac_number_recipiebt = rs.getString(1);
+
+        }catch (Exception e){
+
+        }
+
+        if (selectedStmType.equals("Transfer")){
+            view_detail_stm_trans view_detail_stm_trans = new view_detail_stm_trans(null,false);
+            view_detail_stm_trans.setVisible(true);
+        }else{
+            view_detail_stm view_detail_stm = new view_detail_stm(null,false);
+            view_detail_stm.setVisible(true);
+        }
+
+    }//GEN-LAST:event_view_detail_stm_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +264,7 @@ public class view_statement extends javax.swing.JDialog {
     private javax.swing.JButton back_view_ac_btn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton refresh_view_ac_btn;
+    private javax.swing.JButton view_detail_stm_btn;
     private javax.swing.JScrollPane view_stm_pane;
     private javax.swing.JTable view_stm_table;
     // End of variables declaration//GEN-END:variables
