@@ -6,6 +6,7 @@ package AccountManagement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -48,6 +49,7 @@ public class open_ac_submit extends javax.swing.JDialog {
         open_ac_submit_btn = new javax.swing.JButton();
         ac_number_label = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        open_ac_cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,7 +60,7 @@ public class open_ac_submit extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Account Infomation");
+        jLabel6.setText("Account Information");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Account name :");
@@ -91,37 +93,46 @@ public class open_ac_submit extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Account number :");
 
+        open_ac_cancel_btn.setText("Cancel");
+        open_ac_cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                open_ac_cancel_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(open_ac_submit_btn))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(ac_number_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ac_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(bank_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ac_balance_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ac_number_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ac_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bank_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ac_balance_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(open_ac_submit_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(open_ac_cancel_btn)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +156,9 @@ public class open_ac_submit extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(ac_balance_label))
                 .addGap(18, 18, 18)
-                .addComponent(open_ac_submit_btn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(open_ac_submit_btn)
+                    .addComponent(open_ac_cancel_btn))
                 .addGap(30, 30, 30))
         );
 
@@ -214,17 +227,18 @@ public class open_ac_submit extends javax.swing.JDialog {
         Random rd = new Random();
 
 
+
         try {
             while (true) {
                 ac_number = String.valueOf(rd.nextInt(100000));
-                query = String.format("SELECT ac_number FROM account WHERE customer_id='%s' , ac_number = '%s'", current_id, ac_number);
+                query = String.format("SELECT ac_number FROM account INNER JOIN bank ON account.bank_id = bank.bank_id WHERE ac_number = '%s' AND bank.bank_name = '%s')",ac_number,bank_name);
                 rs = db.getResultSet(query);
                 rs.next();
                 db.disconnect();
             }
         }catch (Exception e){
-        }
 
+        }
         try{
 
             query = String.format("SELECT customer_name FROM customers WHERE customer_id='%s'",current_id);
@@ -235,7 +249,7 @@ public class open_ac_submit extends javax.swing.JDialog {
             db.disconnect();
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
 
@@ -244,6 +258,11 @@ public class open_ac_submit extends javax.swing.JDialog {
         bank_name_label.setText(bank_name);
         ac_balance_label.setText(ac_balance);
     }//GEN-LAST:event_formWindowOpened
+
+    private void open_ac_cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_open_ac_cancel_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_open_ac_cancel_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +316,7 @@ public class open_ac_submit extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton open_ac_cancel_btn;
     private javax.swing.JButton open_ac_submit_btn;
     // End of variables declaration//GEN-END:variables
 }

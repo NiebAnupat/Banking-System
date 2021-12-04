@@ -6,6 +6,7 @@ package Banking;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -143,8 +144,6 @@ public class deposit extends javax.swing.JDialog {
 
         String ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
         String ac_balance_st = null;
-        //String date = null;
-
 
         String query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number);
 
@@ -154,11 +153,17 @@ public class deposit extends javax.swing.JDialog {
             rs.next();
             ac_balance_st = rs.getString(1);
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
-        Double money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to deposit : "));
-        Double ac_balance = money_input + Double.parseDouble(ac_balance_st);
+        Double money_input = null,ac_balance = null;
+        try{
+            money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to deposit : "));
+            ac_balance = money_input + Double.parseDouble(ac_balance_st);
+        }catch (Exception e){
+            Method.displayError("Please enter your money!");
+        }
+
         boolean temp;
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -198,17 +203,16 @@ public class deposit extends javax.swing.JDialog {
             temp = db.execute(query);
 
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }
 
 
 
         if (temp){
-            JOptionPane.showMessageDialog(this, "You have deposited amount : "+money_input+" ฿\nTransaction time : "+date);
-            JOptionPane.showMessageDialog(this,"Successful deposit");
+            Method.displayInfo("You have deposited amount : "+money_input+" ฿\nTransaction time : "+date);
+            Method.displayInfo("Successful deposit");
         }
-        else JOptionPane.showMessageDialog(this,"Deposit failed");
+        else Method.displayError("Deposit failed");
 
         
     }//GEN-LAST:event_deposit_btnActionPerformed
@@ -255,7 +259,7 @@ public class deposit extends javax.swing.JDialog {
             view_ac_table.setModel(model);
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
     }
 

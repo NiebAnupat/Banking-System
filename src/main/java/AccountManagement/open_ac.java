@@ -6,6 +6,7 @@ package AccountManagement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -125,15 +126,21 @@ public class open_ac extends javax.swing.JDialog {
     private void open_ac_next_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_open_ac_next_btnActionPerformed
         // TODO add your handling code here:
 
-        this.setVisible(false);
-        temp1 = String.valueOf(bank_combobox.getSelectedItem());
-        temp2 = String.valueOf(money_input.getText());
+        if (Method.isNumeric(money_input.getText())){
+            if(!money_input.getText().equals("")){
+                this.setVisible(false);
+                temp1 = String.valueOf(bank_combobox.getSelectedItem());
+                temp2 = String.valueOf(money_input.getText());
 
-        temp3 = temp1;
-        temp4 = temp2;
+                temp3 = temp1;
+                temp4 = temp2;
 
-        open_ac_submit ac_submit = new open_ac_submit(null,false);
-        ac_submit.setVisible(true);
+                open_ac_submit ac_submit = new open_ac_submit(null,false);
+                ac_submit.setVisible(true);
+            }else {
+                Method.displayError("Please enter your money for open an account!");
+            }
+        }else Method.displayError("Please enter number");
 
 
     }//GEN-LAST:event_open_ac_next_btnActionPerformed
@@ -156,7 +163,7 @@ public class open_ac extends javax.swing.JDialog {
                 bank_combobox.addItem(rs.getString(1));
             }
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
         

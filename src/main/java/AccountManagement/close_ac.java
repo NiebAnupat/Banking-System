@@ -6,6 +6,7 @@ package AccountManagement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -136,14 +137,32 @@ public class close_ac extends javax.swing.JDialog {
         String query;
         String ac_number;
         boolean temp;
-
         try {
+
             ac_number = view_ac_table.getValueAt(view_ac_table.getSelectedRow(),1).toString();
             int select = JOptionPane.showInternalConfirmDialog(null,"You want to close account number : "+ac_number+" ?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
             if( select == JOptionPane.YES_OPTION){
-                query = String.format("DELETE FROM account WHERE ac_number='%s';",ac_number);
+
                 DB_Connection db = new DB_Connection();
+                query = String.format("DELETE FROM total_statement WHERE ac_number='%s';",ac_number);
                 temp = db.execute(query);
+
+                query = String.format("DELETE FROM moneywithdraw WHERE ac_number='%s';",ac_number);
+                temp = db.execute(query);
+
+                query = String.format("DELETE FROM moneytransfer WHERE ac_number_treansferor ='%s';",ac_number);
+                temp = db.execute(query);
+
+                query = String.format("DELETE FROM moneytransfer WHERE ac_number_recipiebt  ='%s';",ac_number);
+                temp = db.execute(query);
+
+                query = String.format("DELETE FROM moneydeposit WHERE ac_number='%s';",ac_number);
+                temp = db.execute(query);
+
+                query = String.format("DELETE FROM account WHERE ac_number='%s';",ac_number);
+                temp = db.execute(query);
+
             }else throw new Exception();
 
         }catch (Exception e) {
@@ -151,8 +170,10 @@ public class close_ac extends javax.swing.JDialog {
         }
 
         if(temp){
-            JOptionPane.showMessageDialog(this, "Success");
+            Method.displayInfo("Success");
             setTable();
+        }else{
+            Method.displayError("Fail");
         }
 
     }//GEN-LAST:event_close_ac_btnActionPerformed

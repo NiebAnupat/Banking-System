@@ -8,7 +8,9 @@ package Main;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 /**
  *
  * @author niebz
@@ -186,6 +188,7 @@ public class RegisterForm extends javax.swing.JDialog {
     }//GEN-LAST:event_id_tfActionPerformed
 
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
+
         register();
     }//GEN-LAST:event_submit_btnActionPerformed
 
@@ -242,7 +245,7 @@ public class RegisterForm extends javax.swing.JDialog {
     }
 
     private void register (){
-        boolean rs;
+        boolean temp;
         String id = id_tf.getText();
         char[] pw_temp = pass_pf.getPassword();
         String password = String.valueOf(pw_temp);
@@ -251,24 +254,57 @@ public class RegisterForm extends javax.swing.JDialog {
         String name = name_tf.getText();
         String tel = tel_tf.getText();
         String query = null;
-        if (name_tf.getText().equals("")) name = null;
-        if (tel_tf.getText().equals(""))  tel = null;
 
-        try {
-            DB_Connection db = new DB_Connection();
-            query = String.format("INSERT INTO customers(customer_id,customer_password,customer_Name,customer_tel) VALUES('%s','%s','%s','%s');",id,password,name,tel);
-            rs = db.execute(query);
-        }catch (Exception e) {
-            rs = false;
-            JOptionPane.showMessageDialog(null,"Error");
+
+        if (!id.equals("") && !password.equals("") && !conPassword.equals("") && !name.equals("") && !tel.equals("")){
+            if(password.equals(conPassword)){
+                try {
+                    DB_Connection db = new DB_Connection();
+                    query = String.format("SELECT customer_id FROM customers WHERE customer_id='%s'", id);
+                    ResultSet rs = db.getResultSet(query);
+                    if (rs.next()) {
+                        throw new SQLException("Your ID is already used");
+                    }else {
+                        query = String.format("INSERT INTO customers(customer_id,customer_password,customer_Name,customer_tel) VALUES('%s','%s','%s','%s');", id, password, name, tel);
+                        temp = db.execute(query);
+                    }
+                }catch(SQLException e){
+                    temp = false;
+                    Method.displayError("Your ID is already used");
+
+                }catch (Exception e) {
+                    temp = false;
+                    Method.displayError("Error : "+e);
+                }
+
+                if ( temp ){
+                    Method.displayInfo("Register done");
+                    this.dispose();
+                }else {
+                    Method.displayError("Register fail");
+                    clearText();
+                }
+            }else{
+                Method.displayError("Password and Confrim Password must be same!");
+                clearText();
+            }
+
+        }else{
+            Method.displayError("Please enter your information!");
         }
 
-        if ( rs ){
-            JOptionPane.showMessageDialog(null,"Register done");
-        }else {
-            JOptionPane.showMessageDialog(null,"Register fail");
-        }
+
     }
+
+    private void clearText() {
+        id_tf.setText(null);
+        pass_pf.setText(null);
+        conpass_pf.setText(null);
+        name_tf.setText(null);
+        tel_tf.setText(null);
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cencel_btn;

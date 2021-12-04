@@ -6,6 +6,7 @@ package Banking;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -174,7 +175,7 @@ public class transfer extends javax.swing.JDialog {
                 }
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
 
@@ -202,8 +203,17 @@ public class transfer extends javax.swing.JDialog {
                 throw new Exception("Wrong account number or bank");
             }
 
-            money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to transfer : "));
+
             money_input_st = String.valueOf(money_input);
+
+            Double money_input = 0.0,ac_balance = 0.0;
+            try{
+                money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to transfer : "));
+                money_input_st = String.valueOf(money_input);
+            }catch (Exception e){
+                throw  new Exception("Please enter your money!");
+            }
+
 
             query = String.format("SELECT ac_balance FROM account WHERE ac_number = '%s'",ac_number_treansferor);
             rs = db.getResultSet(query);
@@ -227,7 +237,7 @@ public class transfer extends javax.swing.JDialog {
             submit_trans.setVisible(true);
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e.getMessage());
+            Method.displayError(e.getMessage());
         }
 
 

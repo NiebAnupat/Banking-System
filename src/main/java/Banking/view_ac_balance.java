@@ -6,6 +6,7 @@ package Banking;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -152,10 +153,10 @@ public class view_ac_balance extends javax.swing.JDialog {
             DB_Connection db = new DB_Connection();
             ResultSet rs = db.getResultSet(query);
             rs.next();
-            JOptionPane.showMessageDialog(this,"Account number : "+ac_number+"\nBalance : "+rs.getString(1)+" ฿");
+            Method.displayInfo("Account number : "+ac_number+"\nBalance : "+rs.getString(1)+" ฿");
             db.disconnect();
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
     }//GEN-LAST:event_view_balannceActionPerformed
 

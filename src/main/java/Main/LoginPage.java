@@ -168,14 +168,16 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        Login(); // เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
+
+            Login();// เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
+
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
 
         RegisterForm rf = new RegisterForm(this,false); // สร้าง Object จากคลาส RegisterForm
         rf.setVisible(true); // เรียกใช้ Object ที่สร้างเพื่อให้แสดงขึ้นมา
-        
+
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -194,7 +196,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -237,19 +239,22 @@ public class LoginPage extends javax.swing.JFrame {
             //  ↑ ↑ ↑ ↑คำสั่ง Sql เพื่อเช็กว่ามีข้อมูล ID และ Password ที่รับเข้ามาใน Database หรือไม่ ↑ ↑ ↑ ↑
 
             ResultSet rs = db.getResultSet(query); // สั่ง execute query และเก็บผลลัพที่ได้จากการ excecute ไว้ใน ResultSet
+
             if (rs.next()) { // เช็กว่าใน ResultSet มีข้อมูลหรือไม่ ถ้ามีจะ return ค่าออกมาเป็น ture
                 // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อ Username และ Password ถูกต้อง (มีอยู่ใน Database) เท่านั้น
                 this.setVisible(false); // สั่งซ่อนหน้า Login ที่ไม่สั่ง Dispose เพราะมีการเรียกใช้ข้อมูลจากหน้า Login ภายตัวโปรแกรม
-                JOptionPane.showMessageDialog(this,"You are logging in"); // แสดงกล่องข้อความว่า Login สำเร็จ
+                Method.displayInfo("You are logging in");// แสดงกล่องข้อความว่า Login สำเร็จ
                 MenuPage mn = new MenuPage(); // สร้าง Object จากหน้า Menu
                 mn.setVisible(true); // สั่งแสดงหน้า Menu
             }else{
                 // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อ Username และ Password ไม่ถูกต้อง (ไม่มีอยู่ใน Database) เท่านั้น
-                JOptionPane.showMessageDialog(this,"Username or password is wrong.","Alert", JOptionPane.ERROR_MESSAGE);
+                Method.displayError("Username or password is wrong!");
+                text_id.setText(null);
+                text_password.setText(null);
             }
         } catch (SQLException e) {// สั่งเก็บข้อผิดความที่ก็ขึ้นไว้ใน e
             // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อเกิดข้อผิดพลาดจากคำสั่งภายใน try เท่านั้น
-            JOptionPane.showMessageDialog(this,"Error : "+e); // สั่งให้แสดงกล่องข้อความเพื่อแสดงข้อผิดพลาดที่เกินดึ้น
+            Method.displayError("Error : "+e);// สั่งให้แสดงกล่องข้อความเพื่อแสดงข้อผิดพลาดที่เกินดึ้น
         }
         // ------------↑ ↑ ↑ ↑------เมื่อทำงานกับ Database ต้องใช้ try catch เพื่อป้องกันข้อผิดพลาด------↑ ↑ ↑ ↑--------------------
     }

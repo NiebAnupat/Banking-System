@@ -6,6 +6,7 @@ package Banking;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class submit_trans extends javax.swing.JDialog {
     String ac_number_recipiebt ;
     String bank_name_recipiebt ;
     String bank_id_recipiebt;
+    Double money_input = Double.parseDouble(transfer.money_input_st);
 
     public submit_trans(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -59,6 +61,7 @@ public class submit_trans extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         amount_of_transfer = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        trans_cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(450, 480));
@@ -129,6 +132,13 @@ public class submit_trans extends javax.swing.JDialog {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("__________________________________________________");
 
+        trans_cancel_btn.setText("Cancel");
+        trans_cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trans_cancel_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +163,6 @@ public class submit_trans extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(amount_of_transfer))
                     .addComponent(jLabel10)
-                    .addComponent(trans_btn)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -167,7 +176,12 @@ public class submit_trans extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name_transferor)))
+                        .addComponent(name_transferor))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(trans_btn)
+                        .addGap(12, 12, 12)
+                        .addComponent(trans_cancel_btn)))
                 .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
@@ -207,9 +221,11 @@ public class submit_trans extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(amount_of_transfer))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
-                .addComponent(trans_btn)
-                .addGap(25, 25, 25))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trans_btn)
+                    .addComponent(trans_cancel_btn))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -236,7 +252,8 @@ public class submit_trans extends javax.swing.JDialog {
             rs.next();
             Double bank_balance = rs.getDouble(1);
 
-            if (transfer.money_input > bank_balance) throw new Exception("Your bank not enough money");
+
+            if (money_input > bank_balance) throw new Exception("Your bank not enough money");
 
             Double update_balance_transferor = transfer.update_balance_transferor;
             //JOptionPane.showMessageDialog(this, "ac balance transferor is : "+update_balance_transferor+"\nac_number_treansferor : "+transfer.ac_number_treansferor);
@@ -252,7 +269,7 @@ public class submit_trans extends javax.swing.JDialog {
             temp2 = true;
             db.disconnect();
 
-            query = String.format("INSERT INTO moneytransfer (tf_money,ac_number_treansferor,ac_number_recipiebt) VALUES ('%f','%s','%s');",transfer.money_input,transfer.ac_number_treansferor,transfer.ac_number_recipiebt);
+            query = String.format("INSERT INTO moneytransfer (tf_money,ac_number_treansferor,ac_number_recipiebt) VALUES ('%f','%s','%s');",money_input,transfer.ac_number_treansferor,transfer.ac_number_recipiebt);
             temp3 = db.execute(query);
             db.disconnect();
 
@@ -260,7 +277,7 @@ public class submit_trans extends javax.swing.JDialog {
             rs = db.getResultSet(query);
             rs.next();
             String tf_id = rs.getString(1);
-            query = String.format("INSERT INTO total_statement (stm_date,type_id,ac_number,banking_id,amount) VALUES ('%s','%d','%s','%s','%f');",dateSql,3,transfer.ac_number_treansferor,tf_id,transfer.money_input);
+            query = String.format("INSERT INTO total_statement (stm_date,type_id,ac_number,banking_id,amount) VALUES ('%s','%d','%s','%s','%f');",dateSql,3,transfer.ac_number_treansferor,tf_id,money_input);
             temp4 = db.execute(query);
 
             query = String.format("UPDATE bank SET bank_balance = (SELECT  sum(ac_balance) FROM account WHERE bank_id = '%s') WHERE bank_id ='%s';",bank_id,bank_id);
@@ -272,15 +289,15 @@ public class submit_trans extends javax.swing.JDialog {
             temp3 = false;
             temp4 = false;
             temp5 = false;
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
-        if ((temp1) && (temp2) && (temp3) && (temp4)){
-            JOptionPane.showMessageDialog(this, "You have transferred amount : "+transfer.money_input+" ฿\nTransaction time : "+date);
-            JOptionPane.showMessageDialog(this, "Transfer Succeed");
+        if ((temp1) && (temp2) && (temp3) && (temp4 && (temp5))){
+            Method.displayInfo("You have transferred amount : "+money_input+" ฿\nTransaction time : "+date);
+            Method.displayInfo("Transfer Succeed");
             this.dispose();
         }else {
-            JOptionPane.showMessageDialog(this, "Transfer Failed");
+            Method.displayError("Transfer Failed");
             this.dispose();
         }
 
@@ -330,9 +347,8 @@ public class submit_trans extends javax.swing.JDialog {
 
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+
         }
-        //String query = String.format("SELECT bank_name FROM bank INNER JOIN account on bank.bank_id = account.bank_id WHERE ")
 
         bank_name_transferor.setText(bank_name_transferor_st);
         name_transferor.setText(name_transferor_st);
@@ -343,6 +359,11 @@ public class submit_trans extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void trans_cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trans_cancel_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_trans_cancel_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,5 +426,6 @@ public class submit_trans extends javax.swing.JDialog {
     private javax.swing.JLabel name_reciever;
     private javax.swing.JLabel name_transferor;
     private javax.swing.JButton trans_btn;
+    private javax.swing.JButton trans_cancel_btn;
     // End of variables declaration//GEN-END:variables
 }

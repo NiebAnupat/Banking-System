@@ -6,6 +6,7 @@ package Statement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.MenuPage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -147,6 +148,8 @@ public class StatementPage extends javax.swing.JFrame {
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        MenuPage menu_page = new MenuPage();
+        menu_page.setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

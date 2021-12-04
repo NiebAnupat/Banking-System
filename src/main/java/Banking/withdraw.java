@@ -6,6 +6,7 @@ package Banking;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import Main.Method;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -153,11 +154,17 @@ public class withdraw extends javax.swing.JDialog {
             rs.next();
             ac_balance_st = rs.getString(1);
         }catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
 
-        Double money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to withdraw : "));
-        Double ac_balance = Double.parseDouble(ac_balance_st) - money_input;
+        Double money_input = null,ac_balance = null;
+        try{
+            money_input = Double.parseDouble(JOptionPane.showInputDialog("Amount to deposit : "));
+            ac_balance = Double.parseDouble(ac_balance_st) - money_input;
+        }catch (Exception e){
+            Method.displayError("Please enter your money!");
+        }
+
         boolean temp;
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -196,15 +203,14 @@ public class withdraw extends javax.swing.JDialog {
             temp = db.execute(query);
 
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error : "+e);
             temp = false;
         }
 
         if (temp){
-            JOptionPane.showMessageDialog(this, "You have withdrew amount : "+money_input+" ฿\nTransaction time : "+date);
-            JOptionPane.showMessageDialog(this,"Successful withdraw");
+            Method.displayInfo("You have withdrew amount : "+money_input+" ฿\nTransaction time : "+date);
+            Method.displayInfo("Successful withdraw");
         }
-        else JOptionPane.showMessageDialog(this,"withdraw failed");
+        else Method.displayError("Withdraw failed");
 
     }//GEN-LAST:event_withdraw_btnActionPerformed
 
@@ -249,7 +255,7 @@ public class withdraw extends javax.swing.JDialog {
             view_ac_table.setModel(model);
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error : "+e);
+            Method.displayError("Error : "+e);
         }
     }
 

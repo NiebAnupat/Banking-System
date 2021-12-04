@@ -1,5 +1,4 @@
 package Main;
-
 import java.sql.*;
 import javax.swing.JOptionPane;
 public class DB_Connection {
@@ -26,7 +25,7 @@ public class DB_Connection {
         try {
             conn = DriverManager.getConnection(url,username,password);
         }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error connecting to database");
+            Method.displayError("Error connecting to database");
         }
     }
     // ----------------------------------------------
@@ -50,10 +49,8 @@ public class DB_Connection {
             st.execute(query);
             rs = true;
 
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null,"Error : "+ex);
+        }catch (SQLException ex){
             rs = false;
-
         }
         disconnect();
         return rs;
