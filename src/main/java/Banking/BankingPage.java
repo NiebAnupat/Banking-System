@@ -37,8 +37,9 @@ public class BankingPage extends javax.swing.JFrame {
         balance_view_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        trans_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        trans_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         trans_btn.setText("Transfer money");
         trans_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,7 +47,7 @@ public class BankingPage extends javax.swing.JFrame {
             }
         });
 
-        withdraw_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        withdraw_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         withdraw_btn.setText("Withdraw money");
         withdraw_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,11 +55,11 @@ public class BankingPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("RSU", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Banking");
 
-        deposit_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        deposit_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         deposit_btn.setText("Deposit money");
         deposit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +67,7 @@ public class BankingPage extends javax.swing.JFrame {
             }
         });
 
-        back_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        back_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         back_btn.setText("Back");
         back_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,8 +75,8 @@ public class BankingPage extends javax.swing.JFrame {
             }
         });
 
-        balance_view_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        balance_view_btn.setText("ฺBalance");
+        balance_view_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
+        balance_view_btn.setText("Balance");
         balance_view_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 balance_view_btnActionPerformed(evt);
@@ -95,14 +96,14 @@ public class BankingPage extends javax.swing.JFrame {
                     .addComponent(withdraw_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(balance_view_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(balance_view_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trans_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)

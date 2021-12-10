@@ -74,6 +74,7 @@ public class submit_trans extends javax.swing.JDialog {
             }
         });
 
+        trans_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         trans_btn.setText("Transfer");
         trans_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,57 +82,59 @@ public class submit_trans extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("RSU", 1, 36)); // NOI18N
         jLabel1.setText("Transfers");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel2.setText("account number : ");
 
-        ac_number_transferor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ac_number_transferor.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         ac_number_transferor.setText("######");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel4.setText("Bank : ");
 
-        bank_name_transferor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bank_name_transferor.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         bank_name_transferor.setText("######");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel6.setText("To");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel5.setText("Name : ");
 
-        name_transferor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        name_transferor.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         name_transferor.setText("######");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel7.setText("Name : ");
 
-        name_reciever.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        name_reciever.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         name_reciever.setText("######");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel8.setText("Bank : ");
 
-        bank_name_reciever.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bank_name_reciever.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         bank_name_reciever.setText("######");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel3.setText("account number : ");
 
-        ac_number_reciever.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ac_number_reciever.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         ac_number_reciever.setText("######");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel9.setText("Amount of transfer :");
 
-        amount_of_transfer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        amount_of_transfer.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         amount_of_transfer.setText("######");
 
+        jLabel10.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("__________________________________________________");
 
+        trans_cancel_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         trans_cancel_btn.setText("Cancel");
         trans_cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,16 +147,31 @@ public class submit_trans extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel10)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(name_transferor))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(name_reciever))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(trans_cancel_btn)
+                        .addGap(16, 16, 16)
+                        .addComponent(trans_btn))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bank_name_reciever))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ac_number_transferor))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,34 +180,18 @@ public class submit_trans extends javax.swing.JDialog {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(amount_of_transfer))
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ac_number_transferor))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bank_name_transferor))
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name_transferor))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(trans_btn)
-                        .addGap(12, 12, 12)
-                        .addComponent(trans_cancel_btn)))
-                .addGap(55, 55, 55))
+                        .addComponent(bank_name_transferor)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 32, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ac_number_transferor))
@@ -215,17 +217,17 @@ public class submit_trans extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(name_reciever))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(amount_of_transfer))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trans_btn)
-                    .addComponent(trans_cancel_btn))
-                .addGap(33, 33, 33))
+                    .addComponent(trans_cancel_btn)
+                    .addComponent(trans_btn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

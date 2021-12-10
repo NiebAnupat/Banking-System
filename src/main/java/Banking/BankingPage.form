@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -33,7 +34,7 @@
                   <Component id="back_btn" alignment="2" min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="balance_view_btn" alignment="2" min="-2" pref="162" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,8 +42,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="balance_view_btn" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="trans_btn" min="-2" pref="32" max="-2" attributes="0"/>
@@ -61,7 +62,7 @@
     <Component class="javax.swing.JButton" name="trans_btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
+          <Font name="RSU" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Transfer money"/>
       </Properties>
@@ -72,7 +73,7 @@
     <Component class="javax.swing.JButton" name="withdraw_btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
+          <Font name="RSU" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Withdraw money"/>
       </Properties>
@@ -83,7 +84,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="0"/>
+          <Font name="RSU" size="36" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Banking"/>
@@ -92,7 +93,7 @@
     <Component class="javax.swing.JButton" name="deposit_btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
+          <Font name="RSU" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Deposit money"/>
       </Properties>
@@ -103,7 +104,7 @@
     <Component class="javax.swing.JButton" name="back_btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
+          <Font name="RSU" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
@@ -114,9 +115,9 @@
     <Component class="javax.swing.JButton" name="balance_view_btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
+          <Font name="RSU" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xe3a;Balance"/>
+        <Property name="text" type="java.lang.String" value="Balance"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balance_view_btnActionPerformed"/>

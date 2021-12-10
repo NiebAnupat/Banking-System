@@ -52,34 +52,36 @@ public class open_ac_submit extends javax.swing.JDialog {
         open_ac_cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("RSU", 1, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Account Information");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel7.setText("Account name :");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel8.setText("Bank name :");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel9.setText("Account balance :");
 
-        ac_name_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ac_name_label.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         ac_name_label.setText("#####");
 
-        ac_balance_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ac_balance_label.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         ac_balance_label.setText("#####");
 
-        bank_name_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bank_name_label.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         bank_name_label.setText("#####");
 
+        open_ac_submit_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         open_ac_submit_btn.setText("Submit");
         open_ac_submit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,12 +89,13 @@ public class open_ac_submit extends javax.swing.JDialog {
             }
         });
 
-        ac_number_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ac_number_label.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         ac_number_label.setText("#####");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel10.setText("Account number :");
 
+        open_ac_cancel_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         open_ac_cancel_btn.setText("Cancel");
         open_ac_cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +107,7 @@ public class open_ac_submit extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -125,14 +128,14 @@ public class open_ac_submit extends javax.swing.JDialog {
                                     .addComponent(ac_balance_label, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
                         .addGap(27, 27, 27))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addComponent(open_ac_submit_btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(open_ac_cancel_btn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +162,7 @@ public class open_ac_submit extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(open_ac_submit_btn)
                     .addComponent(open_ac_cancel_btn))
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

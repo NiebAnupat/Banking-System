@@ -46,7 +46,9 @@ public class view_ac extends javax.swing.JDialog {
         view_ac_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
+        refresh_view_ac_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         refresh_view_ac_btn.setText("Refresh");
         refresh_view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +56,7 @@ public class view_ac extends javax.swing.JDialog {
             }
         });
 
+        back_view_ac_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         back_view_ac_btn.setText("Back");
         back_view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,7 +64,7 @@ public class view_ac extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("RSU", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("View your account");
 

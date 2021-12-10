@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Banking-System" options="--add-exports java.base/sun=ALL-UNNAMED" />
+      <module name="Banking-System" options="" />
     </option>
   </component>
 </project>

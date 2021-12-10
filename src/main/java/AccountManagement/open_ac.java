@@ -26,9 +26,6 @@ public class open_ac extends javax.swing.JDialog {
     private String ac_number = null, bank_id = null, customer_name = null, ac_balance = null;
     private String current_id = LoginPage.currentid();
 
-    private String temp1 = null, temp2 = null;
-    public static String temp3 = null,temp4 = null;
-
     public open_ac(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -51,16 +48,17 @@ public class open_ac extends javax.swing.JDialog {
         money_input = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(550, 200));
         setModal(true);
-        setPreferredSize(new java.awt.Dimension(550, 200));
-        setSize(new java.awt.Dimension(550, 200));
+        setPreferredSize(new java.awt.Dimension(458, 147));
+        setResizable(false);
+        setSize(new java.awt.Dimension(458, 147));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
+        open_ac_next_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         open_ac_next_btn.setText("Next");
         open_ac_next_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,10 +66,11 @@ public class open_ac extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("RSU", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Open an account");
 
+        bank_combobox.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         bank_combobox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bank_combobox.setMinimumSize(new java.awt.Dimension(500, 400));
         bank_combobox.addActionListener(new java.awt.event.ActionListener() {
@@ -80,41 +79,44 @@ public class open_ac extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel4.setText("Input money");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel5.setText("Choose bank");
+
+        money_input.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(open_ac_next_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(45, 45, 45)
+                        .addGap(21, 21, 21)
                         .addComponent(bank_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(42, 42, 42)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(money_input, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(open_ac_next_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(money_input, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bank_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(money_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(money_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addComponent(bank_combobox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(open_ac_next_btn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -129,12 +131,6 @@ public class open_ac extends javax.swing.JDialog {
         if (Method.isNumeric(money_input.getText())){
             if(!money_input.getText().equals("")){
                 this.setVisible(false);
-                temp1 = String.valueOf(bank_combobox.getSelectedItem());
-                temp2 = String.valueOf(money_input.getText());
-
-                temp3 = temp1;
-                temp4 = temp2;
-
                 open_ac_submit ac_submit = new open_ac_submit(null,false);
                 ac_submit.setVisible(true);
             }else {
@@ -212,18 +208,18 @@ public class open_ac extends javax.swing.JDialog {
     }
 
 
-    public static String getBank_selected_name (){ return temp3; }
+    public static String getBank_selected_name (){ return String.valueOf(bank_combobox.getSelectedItem()); }
 
 
     public static String getInput_money_openAc (){
-        return temp4; }
+        return String.valueOf(money_input.getText()); }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> bank_combobox;
+    protected static javax.swing.JComboBox<String> bank_combobox;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField money_input;
+    protected static javax.swing.JTextField money_input;
     private javax.swing.JButton open_ac_next_btn;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@
     </properties>
 
     <build>
-        <finalName>limeguru-uber-jar</finalName>
+        <finalName>Banking-System-jar</finalName>
         <plugins>
 
             <!-- download source code in Eclipse, best practice -->

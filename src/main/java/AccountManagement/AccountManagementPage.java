@@ -40,8 +40,9 @@ public class AccountManagementPage extends javax.swing.JFrame {
         back_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        view_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        view_ac_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         view_ac_btn.setText("View account");
         view_ac_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,11 +50,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("RSU", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Account Management");
 
-        open_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        open_ac_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         open_ac_btn.setText("Open an account");
         open_ac_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,7 +62,7 @@ public class AccountManagementPage extends javax.swing.JFrame {
             }
         });
 
-        close_ac_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        close_ac_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         close_ac_btn.setText("Close an account");
         close_ac_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +70,7 @@ public class AccountManagementPage extends javax.swing.JFrame {
             }
         });
 
-        back_btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        back_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         back_btn.setText("Back");
         back_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +97,7 @@ public class AccountManagementPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(view_ac_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(open_ac_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
