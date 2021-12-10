@@ -1,6 +1,7 @@
 package AccountManagement;
 
 import Main.*;
+import java.awt.Toolkit;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
@@ -41,6 +42,11 @@ public class AccountManagementPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         view_ac_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         view_ac_btn.setText("View account");
@@ -135,6 +141,15 @@ public class AccountManagementPage extends javax.swing.JFrame {
         close_ac closeAc = new close_ac(this,false);
         closeAc.setVisible(true);
     }//GEN-LAST:event_close_ac_btnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+    }//GEN-LAST:event_formWindowOpened
     /**
      * @param args the command line arguments
      */

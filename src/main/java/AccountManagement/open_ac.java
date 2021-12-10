@@ -7,6 +7,7 @@ package AccountManagement;
 import Main.DB_Connection;
 import Main.LoginPage;
 import Main.Method;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -48,10 +49,10 @@ public class open_ac extends javax.swing.JDialog {
         money_input = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setModal(true);
-        setPreferredSize(new java.awt.Dimension(458, 147));
+        setMinimumSize(new java.awt.Dimension(550, 195));
+        setPreferredSize(new java.awt.Dimension(550, 195));
         setResizable(false);
-        setSize(new java.awt.Dimension(458, 147));
+        setSize(new java.awt.Dimension(550, 195));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -148,6 +149,12 @@ public class open_ac extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+        
         String query;
         DB_Connection db = new DB_Connection();
         ResultSet rs = null;

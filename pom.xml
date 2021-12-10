@@ -33,7 +33,7 @@
     </properties>
 
     <build>
-        <finalName>Banking-System-jar</finalName>
+        <finalName>Banking System</finalName>
         <plugins>
 
             <!-- download source code in Eclipse, best practice -->

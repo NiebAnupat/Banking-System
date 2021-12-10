@@ -7,6 +7,7 @@ package Statement;
 import Main.DB_Connection;
 import Main.LoginPage;
 import Main.MenuPage;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -161,6 +162,11 @@ public class StatementPage extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         setTable();
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
     }//GEN-LAST:event_formWindowOpened
 
     /**

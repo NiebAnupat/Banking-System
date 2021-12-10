@@ -7,6 +7,7 @@ package Banking;
 import Main.DB_Connection;
 import Main.LoginPage;
 import Main.Method;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -254,21 +255,16 @@ public class submit_trans extends javax.swing.JDialog {
             rs.next();
             Double bank_balance = rs.getDouble(1);
 
-
             if (money_input > bank_balance) throw new Exception("Your bank not enough money");
 
             Double update_balance_transferor = transfer.update_balance_transferor;
-            //JOptionPane.showMessageDialog(this, "ac balance transferor is : "+update_balance_transferor+"\nac_number_treansferor : "+transfer.ac_number_treansferor);
             query = String.format("UPDATE account SET ac_balance = '%s' WHERE ac_number = '%s'",update_balance_transferor,transfer.ac_number_treansferor);
-            db.execute(query);
-            temp1=true;
+            temp1= db.execute(query);
             db.disconnect();
 
             Double update_balance_recipiebt = transfer.update_balance_recipiebt;
-            //JOptionPane.showMessageDialog(this, "ac balance recipiebt is : "+update_balance_recipiebt+"\nac_number_recipiebt : "+transfer.ac_number_recipiebt);
             query = String.format("UPDATE account SET ac_balance = '%f' WHERE ac_number = '%s'",update_balance_recipiebt,transfer.ac_number_recipiebt);
-            db.execute(query);
-            temp2 = true;
+            temp2 = db.execute(query);
             db.disconnect();
 
             query = String.format("INSERT INTO moneytransfer (tf_money,ac_number_treansferor,ac_number_recipiebt) VALUES ('%f','%s','%s');",money_input,transfer.ac_number_treansferor,transfer.ac_number_recipiebt);
@@ -307,6 +303,13 @@ public class submit_trans extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+        
         ac_number_transferor.setText(transfer.ac_number_treansferor);
 
         String query = String.format("SELECT bank_id FROM account WHERE ac_number = '%s';",transfer.ac_number_treansferor);
@@ -358,7 +361,6 @@ public class submit_trans extends javax.swing.JDialog {
         bank_name_reciever.setText(transfer.bank_name_recipiebt);
         name_reciever.setText(name_reciever_st);
         amount_of_transfer.setText(transfer.money_input_st+" ฿");
-
 
     }//GEN-LAST:event_formWindowOpened
 

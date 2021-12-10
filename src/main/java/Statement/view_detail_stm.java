@@ -4,6 +4,8 @@
  */
 package Statement;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author niebz
@@ -155,6 +157,12 @@ public class view_detail_stm extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+        
         show_stm_id.setText(view_statement.selectedStmId);
         show_date.setText(view_statement.selectedStmDate);
         show_type_name.setText(view_statement.selectedStmType);

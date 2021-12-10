@@ -7,7 +7,6 @@ public class DB_Connection {
     // ----------------สร้าง Object ที่ใช้กับ Database---------------------
     private Connection conn = null;
     private Statement st = null;
-    private PreparedStatement ps = null;
     private ResultSet rs = null;
     // ---------------------------------------------------------------
     // ----------------URL สำหรับเชื่อมฐานข้อมูลบน Server-------------------
@@ -22,7 +21,7 @@ public class DB_Connection {
 
     // -------Method ที่ใช้ในการเชื่อมต่อกับ Database--------
     public void connectDB() throws SQLException {
-        try {
+        try{
             conn = DriverManager.getConnection(url,username,password);
         }catch (SQLException ex){
             Method.displayError(ex.getMessage());
@@ -30,6 +29,7 @@ public class DB_Connection {
         }
     }
     // ----------------------------------------------
+
 
     // ------Method ที่ใช้ในการตัดการเชื่อมต่อกับฐานข้อมูล--------
     public void disconnect() throws SQLException {
@@ -49,7 +49,6 @@ public class DB_Connection {
             st = conn.createStatement();
             st.execute(query);
             rs = true;
-
         }catch (SQLException ex){
             rs = false;
         }
@@ -64,7 +63,6 @@ public class DB_Connection {
             connectDB();
             st = conn.createStatement();
             rs = st.executeQuery(query);
-
         }catch (Exception ex){
             rs = null;
         }

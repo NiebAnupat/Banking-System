@@ -7,6 +7,7 @@ package AccountManagement;
 import Main.DB_Connection;
 import Main.LoginPage;
 import Main.Method;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -221,6 +222,13 @@ public class open_ac_submit extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+        
         String query = null;
         String bank_name = open_ac.getBank_selected_name();
         ac_balance = open_ac.getInput_money_openAc();

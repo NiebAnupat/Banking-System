@@ -6,6 +6,7 @@ package Statement;
  */
 
 import Main.DB_Connection;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -150,6 +151,11 @@ public class view_statement extends javax.swing.JDialog {
         // TODO add your handling code here:
         ac_number_label.setText(StatementPage.ac_number);
         setTable();
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
 
     }//GEN-LAST:event_formWindowOpened
 

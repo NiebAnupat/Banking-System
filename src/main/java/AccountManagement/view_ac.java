@@ -6,6 +6,7 @@ package AccountManagement;
 
 import Main.DB_Connection;
 import Main.LoginPage;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +48,11 @@ public class view_ac extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         refresh_view_ac_btn.setFont(new java.awt.Font("RSU", 0, 14)); // NOI18N
         refresh_view_ac_btn.setText("Refresh");
@@ -123,6 +129,15 @@ public class view_ac extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_back_view_ac_btnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

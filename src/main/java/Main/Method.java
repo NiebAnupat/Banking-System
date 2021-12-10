@@ -22,4 +22,5 @@ public class Method {
         } catch (NumberFormatException e) {}
         return false;
     }
+
 }

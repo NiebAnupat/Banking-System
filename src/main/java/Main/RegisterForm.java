@@ -5,6 +5,7 @@ package Main;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 
+import java.awt.Toolkit;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -59,6 +60,11 @@ public class RegisterForm extends javax.swing.JDialog {
         conpass_pf = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         jLabel4.setText("Confrim Pass:");
@@ -122,9 +128,7 @@ public class RegisterForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -195,7 +199,6 @@ public class RegisterForm extends javax.swing.JDialog {
     }//GEN-LAST:event_id_tfActionPerformed
 
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
-
         register();
     }//GEN-LAST:event_submit_btnActionPerformed
 
@@ -208,6 +211,15 @@ public class RegisterForm extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) register();
     }//GEN-LAST:event_tel_tfKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -265,6 +277,7 @@ public class RegisterForm extends javax.swing.JDialog {
 
         if (!id.equals("") && !password.equals("") && !conPassword.equals("") && !name.equals("") && !tel.equals("")){
             if(password.equals(conPassword)){
+
                 try {
                     DB_Connection db = new DB_Connection();
                     query = String.format("SELECT customer_id FROM customers WHERE customer_id='%s'", id);
@@ -284,7 +297,7 @@ public class RegisterForm extends javax.swing.JDialog {
                     Method.displayError("Error : "+e);
                 }
 
-                if ( temp ){
+                if (temp){
                     Method.displayInfo("Register done");
                     this.dispose();
                 }else {

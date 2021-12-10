@@ -3,10 +3,12 @@ package Main;
 
 import AccountManagement.AccountManagementPage;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 import javax.swing.*;
 
 /*
@@ -79,6 +81,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("RSU", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -173,13 +180,11 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-
             Login();// เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
 
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-
         RegisterForm rf = new RegisterForm(this,false); // สร้าง Object จากคลาส RegisterForm
         rf.setVisible(true); // เรียกใช้ Object ที่สร้างเพื่อให้แสดงขึ้นมา
 
@@ -193,6 +198,15 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) Login(); // เมื่อ Cursor ชี้อยู่ที่ password_TextField สามารถกดปุ่ม Enter เพื่อ Login ได้
     }//GEN-LAST:event_text_passwordKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -228,6 +242,7 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // ------------------------------------Method ที่ใช้ในการ Login เข้าสู่หน้า Menu-----------------------------------
     private void Login(){
@@ -237,6 +252,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         // ---------------↓ ↓ ↓ ↓-----เมื่อทำงานกับ Database ต้องใช้ try catch เพื่อป้องกันข้อผิดพลาด------↓ ↓ ↓ ↓---------------------
         try {
+
             DB_Connection db = new DB_Connection(); // สร้าง Object เพื่อเรียกใช้คำสั่งที่ทำงานร่วมกับ Database
 
             //  ↓ ↓ ↓ ↓คำสั่ง Sql เพื่อเช็กว่ามีข้อมูล ID และ Password ที่รับเข้ามาใน Database หรือไม่ ↓ ↓ ↓ ↓

@@ -7,6 +7,7 @@ package Banking;
 import Main.DB_Connection;
 import Main.LoginPage;
 import Main.Method;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -141,9 +142,9 @@ public class transfer extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(input_receiver_ac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(next_btn)
-                    .addComponent(back_btn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back_btn)
+                    .addComponent(next_btn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,6 +158,12 @@ public class transfer extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
 
         String query = String.format("SELECT bank_name FROM bank");
         String current_id = LoginPage.currentid();

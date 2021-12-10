@@ -8,6 +8,7 @@ package Main;
 import AccountManagement.AccountManagementPage;
 import Banking.BankingPage;
 import Statement.StatementPage;
+import java.awt.Toolkit;
 
 /**
  *
@@ -40,6 +41,11 @@ public class MenuPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         exit_btn.setFont(new java.awt.Font("RSU", 0, 18)); // NOI18N
         exit_btn.setText("Exit");
@@ -166,6 +172,15 @@ public class MenuPage extends javax.swing.JFrame {
         this.dispose();
         summery_page.setVisible(true);
     }//GEN-LAST:event_summery_btnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        int lebar = this.getWidth()/2;
+        int tinggi = this.getHeight()/2;
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2)-lebar;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2)-tinggi;
+        this.setLocation(x, y);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
