@@ -289,7 +289,7 @@ public class submit_trans extends javax.swing.JDialog {
             temp3 = false;
             temp4 = false;
             temp5 = false;
-            Method.displayError("Error : "+e);
+            Method.displayError(e.getMessage());
         }
 
         if ((temp1) && (temp2) && (temp3) && (temp4 && (temp5))){
