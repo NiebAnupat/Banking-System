@@ -8,6 +8,8 @@ package Main;
 import AccountManagement.AccountManagementPage;
 import Banking.BankingPage;
 import Statement.StatementPage;
+
+import javax.swing.*;
 import java.awt.Toolkit;
 
 /**

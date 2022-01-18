@@ -65,10 +65,9 @@ public class submit_trans extends javax.swing.JDialog {
         trans_cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(450, 480));
-        setPreferredSize(new java.awt.Dimension(450, 480));
+        setMinimumSize(new java.awt.Dimension(370, 447));
         setResizable(false);
-        setSize(new java.awt.Dimension(450, 480));
+        setSize(new java.awt.Dimension(370, 447));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);

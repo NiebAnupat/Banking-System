@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2021 at 02:21 PM
+-- Generation Time: Dec 19, 2021 at 09:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -40,8 +40,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`customer_id`, `ac_number`, `bank_id`, `ac_name`, `ac_balance`) VALUES
-('6400922', 4197, 1, 'Anupat Kaewmee', 3400),
-('6400922', 57197, 3, 'Anupat Kaewmee', 53499);
+('6400922', 4197, 1, 'Anupat Kaewmee', 3600),
+('Admin02', 27984, 2, 'Anupat', 6000),
+('Admin02', 30881, 1, 'Anupat', 21000),
+('6400922', 57197, 3, 'Anupat Kaewmee', 53299);
 
 -- --------------------------------------------------------
 
@@ -60,9 +62,9 @@ CREATE TABLE `bank` (
 --
 
 INSERT INTO `bank` (`bank_id`, `bank_name`, `bank_balance`) VALUES
-(1, 'Nieb Banking', 3400),
-(2, 'Noey Banking', 0),
-(3, 'Eng Banking', 53499),
+(1, 'Nieb Banking', 24600),
+(2, 'Noey Banking', 6000),
+(3, 'Eng Banking', 53299),
 (4, 'Pimuk Banking', 0),
 (5, 'Pee Banking', 0),
 (6, 'Ice Banking', 0);
@@ -105,7 +107,11 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_password`, `customer_name`, `customer_tel`) VALUES
-('6400922', '6400922', 'Anupat Kaewmee', '0661128806');
+('6400922', '6400922', 'Anupat Kaewmee', '0661128806'),
+('Admin', 'Admin', 'Admin', '1234'),
+('Admin02', 'Admin02', 'Anupat', '0661128806'),
+('Sukanraya', '260744', 'Sukanraya', '0862354232'),
+('`Sukanraya', '2607', 'Sukanraya', '0944324535');
 
 -- --------------------------------------------------------
 
@@ -118,6 +124,13 @@ CREATE TABLE `moneydeposit` (
   `dp_money` double NOT NULL,
   `ac_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `moneydeposit`
+--
+
+INSERT INTO `moneydeposit` (`dp_id`, `dp_money`, `ac_number`) VALUES
+(1, 10000, 30881);
 
 -- --------------------------------------------------------
 
@@ -132,6 +145,14 @@ CREATE TABLE `moneytransfer` (
   `ac_number_recipiebt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `moneytransfer`
+--
+
+INSERT INTO `moneytransfer` (`tf_id`, `tf_money`, `ac_number_treansferor`, `ac_number_recipiebt`) VALUES
+(1, 200, 57197, 4197),
+(2, 1000, 27984, 30881);
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +164,13 @@ CREATE TABLE `moneywithdraw` (
   `wd_money` double NOT NULL,
   `ac_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `moneywithdraw`
+--
+
+INSERT INTO `moneywithdraw` (`wd_id`, `wd_money`, `ac_number`) VALUES
+(1, 5000, 27984);
 
 -- --------------------------------------------------------
 
@@ -158,6 +186,16 @@ CREATE TABLE `total_statement` (
   `banking_id` int(11) NOT NULL,
   `amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `total_statement`
+--
+
+INSERT INTO `total_statement` (`stm_id`, `stm_date`, `type_id`, `ac_number`, `banking_id`, `amount`) VALUES
+(1, '2564-12-11 09:51:58', 3, 57197, 1, 200),
+(2, '2564-12-11 10:56:16', 3, 27984, 2, 1000),
+(3, '2564-12-11 10:56:55', 1, 30881, 1, 10000),
+(4, '2564-12-11 10:57:15', 2, 27984, 1, 5000);
 
 --
 -- Indexes for dumped tables
@@ -228,25 +266,25 @@ ALTER TABLE `total_statement`
 -- AUTO_INCREMENT for table `moneydeposit`
 --
 ALTER TABLE `moneydeposit`
-  MODIFY `dp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `moneytransfer`
 --
 ALTER TABLE `moneytransfer`
-  MODIFY `tf_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `moneywithdraw`
 --
 ALTER TABLE `moneywithdraw`
-  MODIFY `wd_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `wd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `total_statement`
 --
 ALTER TABLE `total_statement`
-  MODIFY `stm_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

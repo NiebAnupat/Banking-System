@@ -180,7 +180,8 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-            Login();// เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
+        JOptionPane.showMessageDialog(this,"Your ID is : "+currentid());
+        Login();// เรียกใช้ Method Login เพื่อเข้าสู่ระบบ
 
     }//GEN-LAST:event_loginBtnActionPerformed
 
@@ -252,7 +253,6 @@ public class LoginPage extends javax.swing.JFrame {
 
         // ---------------↓ ↓ ↓ ↓-----เมื่อทำงานกับ Database ต้องใช้ try catch เพื่อป้องกันข้อผิดพลาด------↓ ↓ ↓ ↓---------------------
         try {
-
             DB_Connection db = new DB_Connection(); // สร้าง Object เพื่อเรียกใช้คำสั่งที่ทำงานร่วมกับ Database
 
             //  ↓ ↓ ↓ ↓คำสั่ง Sql เพื่อเช็กว่ามีข้อมูล ID และ Password ที่รับเข้ามาใน Database หรือไม่ ↓ ↓ ↓ ↓
@@ -270,7 +270,6 @@ public class LoginPage extends javax.swing.JFrame {
             }else{
                 // คำสั่งต่อไปนี้จะทำก็ต่อเมื่อ Username และ Password ไม่ถูกต้อง (ไม่มีอยู่ใน Database) เท่านั้น
                 Method.displayError("Username or password is wrong!");
-                text_id.setText(null);
                 text_password.setText(null);
             }
         } catch (SQLException e) {// สั่งเก็บข้อผิดความที่ก็ขึ้นไว้ใน e
@@ -297,7 +296,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JButton registerBtn;
-    protected static javax.swing.JTextField text_id;
+    private static javax.swing.JTextField text_id;
     private javax.swing.JPasswordField text_password;
     // End of variables declaration//GEN-END:variables
 }

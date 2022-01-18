@@ -180,7 +180,7 @@ public class open_ac_submit extends javax.swing.JDialog {
         boolean temp;
         ResultSet rs = null;
         DB_Connection db = new DB_Connection();
-
+            
         try {
             query = String.format("SELECT bank_id FROM bank WHERE bank_name='%s'",bank_name);
             rs = db.getResultSet(query);
@@ -232,7 +232,7 @@ public class open_ac_submit extends javax.swing.JDialog {
         String query = null;
         String bank_name = open_ac.getBank_selected_name();
         ac_balance = open_ac.getInput_money_openAc();
-        current_id = LoginPage.currentid();
+        JOptionPane.showMessageDialog(this,current_id);
         ResultSet rs = null;
         DB_Connection db = new DB_Connection();
         Random rd = new Random();
